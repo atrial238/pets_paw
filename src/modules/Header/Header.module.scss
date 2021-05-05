@@ -1,0 +1,16 @@
+.wrapper {
+	.navigation {
+		display: flex;
+		justify-content: space-between;
+		width: 81%;
+		> a {
+			flex: 0 1 31%;
+		}
+	}
+	.logo{
+		margin-bottom: 80px;
+	}
+	.greetings {
+		margin-bottom: 110px;
+	}
+}
