@@ -1,24 +1,15 @@
-.wrapper {
-	display: flex;
-	justify-content: space-between;
+.right_hand_side{
 	height: 100%;
-	> div {
-		flex: 0 1 45%;
-	}
-	.right_hand_side{
-		flex: 0 1 55%;
-		height: 100%;
-		background: #FBE0DC;
-		border-radius: 20px;
-		position: relative;
-			img {
-				position: absolute;
-				height: 107%;
-				width: 113%;
-				right: -30px;
-				top: 50%;
-				transform: translateY(-50%);
-				object-fit: cover;
-			}
-	}
+	background: #FBE0DC;
+	border-radius: 20px;
+	position: relative;
+		img {
+			position: absolute;
+			height: 107%;
+			width: 113%;
+			right: -30px;
+			top: 50%;
+			transform: translateY(-50%);
+			object-fit: cover;
+		}
 }

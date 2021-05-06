@@ -1,6 +1,6 @@
 import { Route } from 'react-router';
-import {app} from './App.module.scss';
-import {Home} from './pages';
+import './App.scss';
+import {Home, Voting} from './pages';
 
 
 
@@ -9,8 +9,9 @@ function App() {
 	
 
   return (
-	<div className={app}>
+	<div className='app'>
 		<Route exact path={['/', '/home']} component={Home}/>
+		<Route exact path='/voting' component={Voting}/>
 	</div>
   );
 }
