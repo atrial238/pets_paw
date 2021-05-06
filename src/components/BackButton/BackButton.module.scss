@@ -1,0 +1,30 @@
+.wrapper {
+	a {
+		width: 40px;
+		height: 40px;
+		background: #FBE0DC;
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 10px;
+			svg {
+				fill: #FF868E;
+			}
+			&:hover {
+				background: #FF868E;
+				svg {
+					fill: white ;
+				}
+			}
+	}
+	.title {
+		background: #FF868E;
+		border-radius: 10px;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 30px;
+		text-align: center;
+		letter-spacing: 2px;
+	}
+}
