@@ -45,7 +45,7 @@ section {
 input,
 button,
 textarea {
-	font-family: 'Jost' sans-serif;
+	font-family: 'Jost', sans-serif;
 }
 input::-ms-clear {
 	display: none;
