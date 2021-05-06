@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import Back from './Back';
-import {wrapper, title     } from './BackButton.moudle.scss';
+import {wrapper, title } from './BackButton.module.scss';
 
 const BackButton = ({name}) => {
 	return (

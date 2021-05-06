@@ -1,5 +1,5 @@
-import { SearchPanel } from "../../components";
-import { Header } from "../../modules";
+import { BodyContainter, SearchPanel } from "../../components";
+import { Header, VotingBody } from "../../modules";
 import {wrapper} from './Voting.module.scss';
 
 const Voting = () => {
@@ -8,6 +8,9 @@ const Voting = () => {
 			<Header/>
 			<div>
 				<SearchPanel/>
+				<BodyContainter>
+					<VotingBody/>
+				</BodyContainter>
 			</div>
 		</div>
 	)

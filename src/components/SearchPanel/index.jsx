@@ -2,10 +2,8 @@ import {Link} from 'react-router-dom';
 import { Formik } from 'formik';
 
 import {wrapper, form, links_wrapper, button} from './SearchPanel.module.scss';
-import Likes from './Likes';
-import Dislikes from './Dislikes';
-import Favourites from './Favourites';
-import Search from './Search';
+
+import {Likes, Search, Favourites, Dislikes} from '../Svg';
 
 const SearchPanel = () => {
 
