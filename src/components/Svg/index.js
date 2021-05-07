@@ -5,3 +5,4 @@ export {default as Search} from './Search';
 export {default as SortAZ} from './SortAZ';
 export {default as SortZA} from './SortZA';
 export {default as Upload} from './Upload';
+export {default as MainActionButton} from './MainActionButton';
