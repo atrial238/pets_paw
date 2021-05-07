@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'; // E
-import { Link, useParams} from 'react-router-dom';
+import { Link, useRouteMatch} from 'react-router-dom';
 import  {wrapper, container_purple, container_yellow, 
 		container_green, container,  img_wrapper, active, button} from './NavItem.module.scss';
 
 const NavItem = ({imgSrc, name, pageLink, backgroundColor}) => {
 	let styleBackground;
-	let isActive;
+	let isActive = useRouteMatch(pageLink);
 
 	switch(backgroundColor){
 		case 'purple':

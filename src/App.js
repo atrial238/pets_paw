@@ -1,6 +1,6 @@
 import { Route } from 'react-router';
 import './App.scss';
-import {Home, Voting} from './pages';
+import {Breeds, Home, Voting} from './pages';
 
 
 
@@ -12,6 +12,8 @@ function App() {
 	<div className='app'>
 		<Route exact path={['/', '/home']} component={Home}/>
 		<Route exact path='/voting' component={Voting}/>
+		<Route exact path='/breeds' component={Breeds}/>
+
 	</div>
   );
 }

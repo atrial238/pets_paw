@@ -1,0 +1,19 @@
+select {
+	background: #F8F8F7;
+	border-radius: 10px;
+	font-size: 16px;
+	line-height: 24px;
+	padding: 0 10px;
+	cursor: pointer;
+		&:hover {
+			box-shadow: 0 0 0 2px #FBE0DC;
+		}
+}
+.select_light {
+	background: #FFFFFF;
+}
+.select_dark {
+	background: #F8F8F7;
+	color: #8C8C8C;
+	
+}
