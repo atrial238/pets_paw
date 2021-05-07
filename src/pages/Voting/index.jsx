@@ -6,7 +6,7 @@ const Voting = () => {
 	return (
 		<div className='wrapper_page'>
 			<Header/>
-			<div>
+			<div className={wrapper}>
 				<SearchPanel/>
 				<BodyContainter>
 					<VotingBody/>
