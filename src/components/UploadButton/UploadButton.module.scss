@@ -1,0 +1,32 @@
+.wrapper{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #FBE0DC;
+	border-radius: 10px;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+	text-align: center;
+	letter-spacing: 2px;
+	color: #FF868E;  
+	text-transform: uppercase;
+	transition: all .4s;
+	padding: 0px 30px;
+		svg {
+			 fill: #FF868E;
+			 transition: all .4s; 
+		}
+		&:hover {
+			background: #FF868E;
+			color: white;
+			svg {
+				fill: white;
+			}
+		}
+		span{
+			&:first-child {
+				margin-right: 10px;
+			}
+		}
+}
