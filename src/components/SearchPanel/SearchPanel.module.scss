@@ -17,6 +17,15 @@
 			&:hover {
 				background: #FBE0DC;
 			}
+			&.favourites {
+				svg {
+					fill: none;
+					stroke: #FF868E;
+				}
+				&:hover {
+					background: #FBE0DC;
+				}
+			}
 	}
 	.form {
 		display: flex;

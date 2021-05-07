@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom';
 import { Formik } from 'formik';
 
-import {wrapper, form, links_wrapper, button} from './SearchPanel.module.scss';
-
+import {wrapper, form, links_wrapper, button, favourites} from './SearchPanel.module.scss';
 import {Likes, Search, Favourites, Dislikes} from '../Svg';
 
 const SearchPanel = () => {
@@ -34,8 +33,8 @@ const SearchPanel = () => {
 					)}
 				</Formik>
 			<div className={links_wrapper}>
-				<Link to='/favourites' className={button}><Favourites/></Link>
-				<Link to='/dislikes' className={button}><Likes/></Link> 
+				<Link to='/dislikes' className={button}><Likes/></Link>
+				<Link to='/favourites' className={button + ' ' + favourites}><Favourites/></Link>
 				<Link to='/likes' className={button}><Dislikes/></Link>
 			</div>
 		</div>

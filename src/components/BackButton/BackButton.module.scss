@@ -9,8 +9,10 @@
 		justify-content: center;
 		align-items: center;
 		margin-right: 10px;
+		transition: all .4s;
 			svg {
 				fill: #FF868E;
+				transition: all .4s;
 			}
 			&:hover {
 				background: #FF868E;
