@@ -18,18 +18,18 @@ export const votingAPI = {
 		return instance.post('/votes', {image_id, value})
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error')
-	},
-	addFavourite({image_id}){
-		return instance.post('/favourites', {image_id})
-			.then(res => res.status === 200 && res.data)
-			.catch(() => 'error')
 	}
 }
 
 export const favouritesAPI = {
-	getMyFavourites(){
-		return instance.get('/favourites')
-			.then(res => console.log(res))
+	getMyFavourites(limit, page){
+		return instance.get('/favourites', {params: {limit, page}})
+			.then(res =>  res.status === 200 && res.data)
+			.catch(() => 'error')
+	},
+	addFavourite({image_id}){
+		return instance.post('/favourites', {image_id})
+			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error')
 	}
 }

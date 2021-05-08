@@ -1,7 +1,7 @@
 import {useReducer, useEffect} from 'react';
 import format from 'date-fns/format';
 
-import { votingAPI } from '../../API/api';
+import { votingAPI, favouritesAPI} from '../../API/api';
 import { BodyContainter, SearchPanel } from "../../components";
 import { Header, VotingBody } from "../../modules";
 import { initState, reducer } from './reducer';
@@ -68,7 +68,7 @@ const Voting = () => {
 	const addFavourite = (body) => {
 		dispatch({type: 'FAVOURITE_LOADING', body: true});
 		dispatch({type: 'ERROR_OCCUR', body: false});
-		votingAPI.addFavourite(body)
+		favouritesAPI.addFavourite(body)
 			.then(res => {
 				if(res === 'error'){
 					dispatch({type: 'FAVOURITE_LOADING', body: false});

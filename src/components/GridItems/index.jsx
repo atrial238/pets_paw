@@ -1,28 +1,9 @@
 import {grid} from './GridItems.module.scss';
 
-const GridItems = () => {
+const GridItems = ({items}) => {
 	return (
 		<div className={grid}>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+				{items}
 			</div>
 	)
 }
