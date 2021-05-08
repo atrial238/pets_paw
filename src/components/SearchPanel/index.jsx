@@ -9,7 +9,7 @@ const SearchPanel = () => {
 	return (
 		<div className={wrapper}>
 				<Formik
-					initialValues={{ name: 'jared' }}
+					initialValues={{ name: '' }}
 					onSubmit={(values, actions) => {
 						console.log(1)
 					  setTimeout(() => {
@@ -18,7 +18,9 @@ const SearchPanel = () => {
 					  }, 1000);
 					}}
 				>
-					{props => (
+					{props => {
+						
+						return (
 						<form onSubmit={props.handleSubmit} className={form}>
 							<input
 								type="text"
@@ -30,7 +32,7 @@ const SearchPanel = () => {
 							{/* {errors.name && touched.name && <div id="feedback">{errors.name}</div>} */}
 							<button type="submit"  className={button}><Search/></button>
 						</form>
-					)}
+					)}}
 				</Formik>
 			<div className={links_wrapper}>
 				<Link to='/dislikes' className={button}><Likes/></Link>

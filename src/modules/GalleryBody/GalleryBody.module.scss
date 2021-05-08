@@ -1,4 +1,7 @@
 .wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	.back_button {
 		display: flex;
 		justify-content: space-between;

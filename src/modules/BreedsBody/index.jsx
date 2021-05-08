@@ -1,4 +1,4 @@
-import {  BackButton, Select} from "../../components";
+import {  BackButton, GridItems, Select} from "../../components";
 import {SortAZ, SortZA} from '../../components/Svg'
 import { wrapper, back_button, header_breeds, 
 	sort_wrapper, grid, breeds_select} from './Breeds.module.scss';
@@ -18,7 +18,7 @@ const BreedsBody = () => {
 					<button><SortZA/></button>
 				</div>
 			</div> 
-			<div className={grid}>
+			{/* <div className={grid}>
 				<div></div>
 				<div></div>
 				<div></div>
@@ -39,8 +39,8 @@ const BreedsBody = () => {
 				<div></div>
 				<div></div>
 				<div></div>
-				
-			</div>
+			</div> */}
+			<GridItems/>
 		</div>
 	)
 }

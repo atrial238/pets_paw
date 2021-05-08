@@ -40,6 +40,8 @@
 				color: #8C8C8C;
 				font-size: 20px;
 				line-height: 20px;
+				margin-right: 10px;
+				
 			}
 			button {
 				border-radius: 10px;
@@ -53,6 +55,12 @@
 						fill: white;
 					}
 				}
+			}
+			&:hover {
+				box-shadow: 0 0 0 2px #FBE0DC;
+			}
+			&:focus-within {
+				box-shadow: 0 0 0 2px #FF868E;
 			}
 	}
 	.links_wrapper {

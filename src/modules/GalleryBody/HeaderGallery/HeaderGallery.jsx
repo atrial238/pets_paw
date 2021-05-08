@@ -17,13 +17,12 @@ const HeaderGallery = () => {
 			<div className={select}>
 				<label htmlFor="breed">breed</label>
 				<Select name='None' background='light' items={['All', 'All', 'All', 'All', 'All', 'All', 'All', 'All', 'All']}/>
-
 			</div>
 			<div className={select + ' ' + select_limit}>
 				<label htmlFor="limit">limit</label>
 				<div className={wrapper_select_limit}>
 					<div><Select name='5 items per page' background='light' items={['10 items per page', '15 items per page', '20 items per page']}/></div>
-					<button ><MainActionButton/></button>
+					<button><MainActionButton/></button>
 				</div>
 			</div>
 		</div>

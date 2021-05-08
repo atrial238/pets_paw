@@ -1,4 +1,4 @@
-import { BackButton, UploadButton } from "../../components"
+import { BackButton, GridItems, UploadButton } from "../../components"
 import { wrapper, back_button} from './GalleryBody.module.scss';
 import HeaderGallery from "./HeaderGallery/HeaderGallery";
 
@@ -10,6 +10,7 @@ const GalleryBody = () => {
 				<UploadButton/>
 			 </div>
 			 <HeaderGallery/>
+			 <GridItems/>
 		</div>
 	)
 }

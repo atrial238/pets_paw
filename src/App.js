@@ -1,11 +1,11 @@
 import { Route } from 'react-router';
+import { votingAPI } from './API/api';
 import './App.scss';
 import {Breeds, Gallery, Home, Voting} from './pages';
 
 
 
 function App() {
-	
 	
 
   return (
