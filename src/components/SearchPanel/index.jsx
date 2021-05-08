@@ -1,11 +1,32 @@
-import {Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {Link, useRouteMatch} from 'react-router-dom';
 import { Formik } from 'formik';
 
-import {wrapper, form, links_wrapper, button, favourites} from './SearchPanel.module.scss';
+import {wrapper, form, links_wrapper, button, favourites, active} from './SearchPanel.module.scss';
 import {Likes, Search, Favourites, Dislikes} from '../Svg';
 
 const SearchPanel = () => {
+	const [isActiveFav, setIsActiveFav] = useState(''),
+			[isActiveLikes, setIsActiveLikes] = useState(''),
+			[isActiveDislikes, setIsActiveDislikes] = useState('');
 
+	const path = useRouteMatch().path;
+	useEffect(() => {
+
+		switch(path){
+			case '/favourites':
+				setIsActiveFav(active);
+				break;
+			case '/likes':
+				setIsActiveLikes(active);
+				break;
+			case '/dislikes':
+				setIsActiveDislikes(active);
+				break;
+			default:
+		}
+	}, [path])
+	
 	return (
 		<div className={wrapper}>
 				<Formik
@@ -35,9 +56,9 @@ const SearchPanel = () => {
 					)}}
 				</Formik>
 			<div className={links_wrapper}>
-				<Link to='/dislikes' className={button}><Likes/></Link>
-				<Link to='/favourites' className={button + ' ' + favourites}><Favourites/></Link>
-				<Link to='/likes' className={button}><Dislikes/></Link>
+				<Link to='/dislikes' className={button + ' ' + isActiveLikes}><Likes/></Link>
+				<Link to='/favourites' className={button + ' ' + favourites + ' ' +isActiveFav }><Favourites/></Link>
+				<Link to='/likes' className={button + ' ' + isActiveDislikes}><Dislikes/></Link>
 			</div>
 		</div>
 	)

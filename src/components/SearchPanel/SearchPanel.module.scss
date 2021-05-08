@@ -26,6 +26,23 @@
 					background: #FBE0DC;
 				}
 			}
+			&.active {
+				background: #FF868E;
+				cursor: auto;
+				svg {
+					fill: white;
+					transition:  all .4s;
+				}
+				&:hover {
+					background: #FF868E;
+				}
+				&.favourites {
+					svg {
+						fill: none;
+						stroke: white;
+					}
+				}
+			}
 	}
 	.form {
 		display: flex;

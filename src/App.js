@@ -1,7 +1,6 @@
 import { Route } from 'react-router';
-import { votingAPI } from './API/api';
 import './App.scss';
-import {Breeds, Gallery, Home, Voting} from './pages';
+import {Breeds, Favourites, Gallery, Home, Voting} from './pages';
 
 
 
@@ -14,7 +13,7 @@ function App() {
 		<Route exact path='/voting' component={Voting}/>
 		<Route exact path='/breeds' component={Breeds}/>
 		<Route exact path='/gallery' component={Gallery}/>
-
+		<Route exact path='/favourites' component={Favourites}/>
 
 	</div>
   );
