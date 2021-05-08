@@ -49,6 +49,7 @@ const SearchPanel = () => {
 								onBlur={props.handleBlur}
 								value={props.values.name}
 								name="name"
+								placeholder='Search for breeds by name'
 							/>
 							{/* {errors.name && touched.name && <div id="feedback">{errors.name}</div>} */}
 							<button type="submit"  className={button}><Search/></button>

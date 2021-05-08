@@ -20,9 +20,16 @@ export const votingAPI = {
 			.catch(() => 'error')
 	},
 	addFavourite({image_id}){
-		console.log(image_id)
 		return instance.post('/favourites', {image_id})
 			.then(res => res.status === 200 && res.data)
+			.catch(() => 'error')
+	}
+}
+
+export const favouritesAPI = {
+	getMyFavourites(){
+		return instance.get('/favourites')
+			.then(res => console.log(res))
 			.catch(() => 'error')
 	}
 }

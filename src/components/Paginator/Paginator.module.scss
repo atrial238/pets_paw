@@ -1,0 +1,20 @@
+.wrapper {
+	display: flex;
+	button {
+		padding: 0 15px;
+		border-radius: 10px;
+		background: #F8F8F7;
+		color: #8C8C8C;
+		transition: all .4s;
+			&:hover {
+				background: #FBE0DC;
+				color: #FF868E;
+			}
+			&.previous {
+				margin-right: 10px;
+			}
+			&.next {
+				margin-left: 10px;
+			}
+	}
+}
