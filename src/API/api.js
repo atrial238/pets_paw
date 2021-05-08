@@ -12,17 +12,17 @@ export const votingAPI = {
 	getRandomPet(){
 		return instance.get('/images/search')
 		 .then(res => res.status === 200 && res.data[0])
-		 .catch(() => 'something went wrong')
+		 .catch(() => 'error')
 	},
-	vote({image_id, value}){
+	addVote({image_id, value}){
 		return instance.post('/votes', {image_id, value})
 			.then(res => res.status === 200 && res.data)
-			.catch(() => 'something went wrong')
+			.catch(() => 'error')
 	},
 	addFavourite({image_id}){
 		console.log(image_id)
 		return instance.post('/favourites', {image_id})
 			.then(res => res.status === 200 && res.data)
-			.catch((res) =>  res)
+			.catch(() => 'error')
 	}
 }
