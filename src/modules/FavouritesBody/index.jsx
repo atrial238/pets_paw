@@ -1,10 +1,14 @@
 import { BackButton, GridItems, ImagePet, Paginator } from '../../components';
 import {wrapper, back_button, header_favorites, paginator, body} from './FavouritesBody.module.scss';
 
-const FavouritesBody = ({state, changeLimit}) => {
+const FavouritesBody = ({state, changeLimit, setNextPage, setPreviousPage}) => {
 	const propsPaginator = {
 		changeLimit,
-		selectValue: state.limit
+		selectValue: state.limit,
+		setNextPage,
+		setPreviousPage,
+		page: state.page,
+		isLastPage: state.isLastPage
 	}
 	const petsImage = state.favouritesPet.map(el=> <ImagePet imageUrl={el.image.url} key={el.user_id}/>)
 	return (

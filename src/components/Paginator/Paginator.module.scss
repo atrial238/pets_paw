@@ -16,5 +16,13 @@
 			&.next {
 				margin-left: 10px;
 			}
+			&.disabled_style {
+				opacity: .4;
+				cursor: auto;
+				&:hover {
+					background: #F8F8F7;
+					color: #8C8C8C;
+				}
+			}
 	}
 }

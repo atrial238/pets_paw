@@ -1,7 +1,10 @@
 export const initState = {
-	page: 1,
+	page: 0,
 	favouritesPet: [],
-	limit: 'Limit: 5'
+	limit: 'Limit: 5',
+	isLastPage: false,
+	isLoading: false,
+	isError: false
 }
 export const reducer = (state = initState, {type, body}) =>  {
 	switch(type){
@@ -12,7 +15,13 @@ export const reducer = (state = initState, {type, body}) =>  {
 		case 'SET_LIMIT':
 			return {...state, limit: body};
 		case 'SET_FAVOUTIRES_PETS':
-			return {...state, favouritesPet: body}
+			return {...state, favouritesPet: body};
+		case 'SET_LAST_PAGE':
+			return {...state, isLastPage: body};
+		case 'SET_IS_LOADING':
+			return {...state, isLoading: body};
+		case 'SET_IS_ERROR':
+			return {...state, isError: body};
 		default:
 	}
 }
