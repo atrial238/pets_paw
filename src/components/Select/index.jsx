@@ -4,8 +4,6 @@ import {select_light, select_dark} from './Select.module.scss';
 
 const Select = ({background, items, selectValue, changeLimit}) => {
 
-	
-
 
 	let select;
 	switch(background){
@@ -25,7 +23,8 @@ const Select = ({background, items, selectValue, changeLimit}) => {
 export default Select;
 
 Select.propTypes = {
-	name: PropTypes.string,
 	background: PropTypes.string,
-	items: PropTypes.array
+	items: PropTypes.array,
+	selectValue: PropTypes.string,
+	changeLimit: PropTypes.func
 }

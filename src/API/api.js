@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
 	baseURL: 'https://api.thedogapi.com/v1/',
-	headers: {'x-api-key': 'dfa2b984-f7ef-4dbe-a06f-6c37c1b17461'},
+	// headers: {'x-api-key': 'dfa2b984-f7ef-4dbe-a06f-6c37c1b17461'},
 	
 });
 // axios.defaults.headers.common['x-api-key'] = "dfa2b984-f7ef-4dbe-a06f-6c37c1b17461";
@@ -28,7 +28,13 @@ export const favouritesAPI = {
 			.catch(() => 'error')
 	},
 	addFavourite({image_id}){
+		
 		return instance.post('/favourites', {image_id})
+			.then(res => res.status === 200 && res.data)
+			.catch(() => 'error')
+	},
+	removeFavourite(id){
+		return instance.delete(`/favourites/${id}`)
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error')
 	}

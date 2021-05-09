@@ -18,11 +18,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
 		background: rgba(255, 134, 142, .6);
 		border-radius: 20px;
 		opacity: 0;
 			button {
+				cursor: pointer;
 				background: white;
 				display: flex;
 				justify-content: center;

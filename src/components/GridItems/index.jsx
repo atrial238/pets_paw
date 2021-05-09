@@ -1,10 +1,5 @@
 import {grid} from './GridItems.module.scss';
 
-const GridItems = ({items}) => {
-	return (
-		<div className={grid}>
-				{items}
-			</div>
-	)
-}
+const GridItems = ({items}) => <div className={grid}>{items}</div>;
+
 export default GridItems;
