@@ -28,7 +28,6 @@ export const favouritesAPI = {
 			.catch(() => 'error')
 	},
 	addFavourite({image_id}){
-		
 		return instance.post('/favourites', {image_id})
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error')
@@ -39,3 +38,11 @@ export const favouritesAPI = {
 			.catch(() => 'error')
 	}
 }
+
+export const imageAPI = {
+	getSpecificImage(id){
+		return instance.get(`/images/${id}`)
+			.then(res => res.status === 200 && res.data)
+			.catch(() => 'error');
+	}
+} 

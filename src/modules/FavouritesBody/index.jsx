@@ -19,7 +19,7 @@ const FavouritesBody = ({state, changeLimit, setNextPage, setPreviousPage, remov
 	};
 
 	const petsImage = state.favouritesPet.map(
-			pet => <ImagePet imageUrl={pet.image.url} key={pet.user_id} id={pet.id} removeFavourite={removeFavourite}/>
+			pet => <ImagePet imageUrl={pet.image.url} key={pet.image.id} id={pet.id} removeFavourite={removeFavourite}/>
 		);
 
 	return (
