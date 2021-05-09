@@ -28,15 +28,9 @@
 				justify-content: center;
 				align-items: center;
 				border-radius: 10px;
-				width: 40px;
-				height: 40px;
-				svg {
-					width: 20px;
-					height: 20px;
-					fill: #FF868E;
-				}
-			}
-			
+				color:#FF868E;
+				padding: 5px;
+			}	
 	}
 	&:hover {
 		.cover{

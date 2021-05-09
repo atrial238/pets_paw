@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { ActionLog, BackButton, GridItems,
 	 ImagePet, Paginator, Placeholder } from '../../components';
 import {wrapper, back_button, header_favorites, 
-	paginator, preloader, error, remove, active_remove} from './FavouritesBody.module.scss';
+	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
-const FavouritesBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavourite, getTime, }) => {
+const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavourite, getTime, typeVote}) => {
 
 	const propsPaginator = {
 		changeLimit,
@@ -18,14 +18,20 @@ const FavouritesBody = ({state, changeLimit, setNextPage, setPreviousPage, remov
 		items: state.items
 	};
 
-	const petsImage = state.favouritesPet.map(
-			pet => <ImagePet imageUrl={pet.image.url} key={pet.image.id} id={pet.id} removeFavourite={removeFavourite}/>
-		);
+	const petsImage = state.favouritesPet.map(pet => (
+		<ImagePet 
+			imageUrl={pet.image.url} 
+			key={pet.image.id} 
+			id={pet.id} 
+			removeFavourite={removeFavourite} 
+			typeVote={typeVote}
+		/>
+	));
 
 	return (
 		<div className={wrapper}>
 			<div className={header_favorites}>
-				<div className={back_button}><BackButton name='favourites'/></div>
+				<div className={back_button}><BackButton name={typeVote}/></div>
 				<div className={paginator}><Paginator {...propsPaginator}/></div>
 			</div>
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
@@ -37,14 +43,15 @@ const FavouritesBody = ({state, changeLimit, setNextPage, setPreviousPage, remov
 	</div>
 	)
 }
-export default FavouritesBody;
+export default VoteBody;
 
-FavouritesBody.propTypes = {
+VoteBody.propTypes = {
 	changeLimit: PropTypes.func,
 	setNextPage: PropTypes.func,
 	setPreviousPage: PropTypes.func,
 	removeFavourite: PropTypes.func,
 	getTime: PropTypes.func,
+	typeVote: PropTypes.string,
 	state: {
 		page: PropTypes.number,
 		favouritesPet: PropTypes.array,

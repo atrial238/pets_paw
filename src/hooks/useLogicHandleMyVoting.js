@@ -52,15 +52,13 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 // helper function to avoid dublicate code
 	const getVotingPetImages = (res) => {
 		const valueVoting = likes ? 1 : 0;
-
 		// server API don't allow me get all likes or dislikes pet separately must filter them
-		const imagesId = res.filter(el => el.value === valueVoting && {idImage: el.image_id, idVote: el.id});
-
+		const imagesId = res.filter(el => el.value === valueVoting);
 		//response of get my Votes don't contain url of image,
 		//that whay I must make request for every vote on another endpoit(/images), for attach to every vote url image
-		Promise.all(imagesId.map(el => imageAPI.getSpecificImage(el.idImage)))
+		Promise.all(imagesId.map(el => imageAPI.getSpecificImage(el.image_id)))
 			.then(res => {
-				const votePets = res.map((el, index) => ({id: imagesId[index].idVote, image: {id: el.id, url: el.url}}))
+				const votePets = res.map((el, index) => ({id: imagesId[index].id, image: {id: el.id, url: el.url}}))
 				dispatch({type: 'SET_FAVOUTIRES_PETS', body: votePets});
 				dispatch({type: 'SET_IS_LOADING', body: false});
 				dispatch({type: 'SET_IS_ERROR', body: false});
@@ -122,13 +120,21 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 					const limit = +state.limit.match(/.{1,2}$/g)[0];
 					getPetAPI(limit, state.page)
 						.then(res => {
-							if(res === 'error') {
+							if(res.length === 0){
+								dispatch({type: 'SET_LAST_PAGE', body: true});
+								dispatch({type: 'SET_IS_LOADING', body: false});
+							}else if(res === 'error'){
+								dispatch({type: 'SET_IS_LOADING', body: false});
 								dispatch({type: 'SET_IS_ERROR', body: true})
-								dispatch({type: 'SET_IS_LOADING', body: false});
 							}else{
-								dispatch({type: 'SET_IS_ERROR', body: false})
-								dispatch({type: 'SET_IS_LOADING', body: false});
-								dispatch({type: 'SET_FAVOUTIRES_PETS', body: res});
+								if(likes || dislikes){
+									getVotingPetImages(res)
+								}else{
+									dispatch({type: 'SET_FAVOUTIRES_PETS', body: res});
+									dispatch({type: 'SET_LAST_PAGE', body: false});
+									dispatch({type: 'SET_IS_LOADING', body: false});
+									dispatch({type: 'SET_IS_ERROR', body: false});
+								}
 							}
 						})
 				}

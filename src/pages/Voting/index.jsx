@@ -1,7 +1,7 @@
 import {useReducer, useEffect} from 'react';
 import format from 'date-fns/format';
 
-import { votingAPI, favouritesAPI} from '../../API/api';
+import { votingAPI, favouritesAPI, imageAPI} from '../../API/api';
 import { BodyContainter, SearchPanel } from "../../components";
 import { Header, VotingBody } from "../../modules";
 import { initState, reducer } from './reducer';
@@ -17,7 +17,7 @@ const Voting = () => {
 		dispatch({type: 'LOADING', body: true});
 		dispatch({type: 'FAVOURITE', body: false});
 		dispatch({type: 'ERROR_OCCUR', body: false});
-		votingAPI.getRandomPet()
+		imageAPI.getRandomPet()
 			.then(res => {
 				if(res === 'error') {
 					dispatch({type: 'ERROR_OCCUR', body: true});
@@ -49,7 +49,7 @@ const Voting = () => {
 					if(body.value === 0) addRecentActionLog(getTime(), body.image_id, 'Dislikes');
 					dispatch({type: 'FAVOURITE', body: false});
 					dispatch({type: 'ERROR_OCCUR', body: false});
-					votingAPI.getRandomPet()
+					imageAPI.getRandomPet()
 					.then(res => {
 						if(res === 'error'){
 							dispatch({type: 'ERROR_OCCUR', body: true});

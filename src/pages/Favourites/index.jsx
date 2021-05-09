@@ -1,5 +1,5 @@
 import { BodyContainter, SearchPanel } from "../../components";
-import { FavouritesBody, Header } from "../../modules";
+import { VoteBody, Header } from "../../modules";
 import {wrapper} from './Favourites.mosule.scss';
 import {favouritesAPI} from '../../API/api';
 import { useLogicHandleMyVoting } from '../../hooks/useLogicHandleMyVoting';
@@ -15,7 +15,7 @@ const Favourites = () => {
 			<div className={wrapper}>
 				<SearchPanel/>
 				<BodyContainter>
-					<FavouritesBody {...propsFavoritesBody}/>
+					<VoteBody {...propsFavoritesBody} typeVote='Favourite'/>
 				</BodyContainter>
 			</div>
 		</div>

@@ -57,9 +57,9 @@ const SearchPanel = () => {
 					)}}
 				</Formik>
 			<div className={links_wrapper}>
-				<Link to='/dislikes' className={button + ' ' + isActiveLikes}><Likes/></Link>
+				<Link to='/likes' className={button + ' ' + isActiveLikes}><Likes/></Link>
 				<Link to='/favourites' className={button + ' ' + favourites + ' ' +isActiveFav }><Favourites/></Link>
-				<Link to='/likes' className={button + ' ' + isActiveDislikes}><Dislikes/></Link>
+				<Link to='/dislikes' className={button + ' ' + isActiveDislikes}><Dislikes/></Link>
 			</div>
 		</div>
 	)
