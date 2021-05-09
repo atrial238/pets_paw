@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { ActionLog, BackButton, GridItems,
 	 ImagePet, Paginator, Placeholder } from '../../components';
-import {wrapper, back_button, header_favorites, 
+import {wrapper, back_button, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
 const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavourite, getTime, typeVote}) => {
@@ -18,13 +18,13 @@ const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavou
 		items: state.items
 	};
 
-	const petsImage = state.favouritesPet.map(pet => (
+	const petsImage = state.favouritesPet.map(pet => console.log(pet) || (
 		<ImagePet 
 			imageUrl={pet.image.url} 
 			key={pet.image.id} 
 			id={pet.id} 
 			removeFavourite={removeFavourite} 
-			typeVote={typeVote}
+			value={pet.value}
 		/>
 	));
 
@@ -36,6 +36,7 @@ const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavou
 			</div>
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
+				|| (state.isLastPage && <div className={no_items}>No item found</div>)
 				|| <GridItems items={petsImage} />}
 			<div className={remove + ' ' + (state.removeSuccess && active_remove)}>
 				{state.removeSuccess && <ActionLog time={getTime()} content='was removed from Favourites' id={state.removedFavId}/>}

@@ -4,6 +4,7 @@ import Back from './Back';
 import {wrapper, title } from './BackButton.module.scss';
 
 const BackButton = ({name}) => {
+	
 	return (
 		<div className={wrapper}>
 			<Link to='/' ><Back/></Link>

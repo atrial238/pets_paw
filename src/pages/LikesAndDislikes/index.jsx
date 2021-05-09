@@ -3,7 +3,7 @@ import { VoteBody, Header } from "../../modules";
 import {votingAPI} from '../../API/api';
 import { useLogicHandleMyVoting } from '../../hooks/useLogicHandleMyVoting';
 
-const Likes = () => {
+const LikesAndDislikes = () => {
 	
 	const propsFavoritesBody = useLogicHandleMyVoting(votingAPI.getMyVotes, votingAPI.removeVote, true)
 	
@@ -13,10 +13,10 @@ const Likes = () => {
 			<div>
 				<SearchPanel/>
 				<BodyContainter>
-					<VoteBody {...propsFavoritesBody}/>
+					<VoteBody {...propsFavoritesBody} typeVote='Likes and Dislikes'/>
 				</BodyContainter>
 			</div>
 		</div>
 	)
 }
-export default Likes;
+export default LikesAndDislikes;

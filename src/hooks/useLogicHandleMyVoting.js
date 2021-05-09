@@ -12,10 +12,8 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 		isLoading: false,
 		isError: false,
 		removeSuccess: false,
-		removedFavId: '',
+		removedVoteId: '',
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
-		likePets: [],
-		dislikePets: []
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -28,7 +26,8 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 				return {...state, page: 0};
 			case 'SET_LIMIT':
 				return {...state, limit: body};
-			case 'SET_FAVOUTIRES_PETS':
+			case 'SET_VOTE_PETS':
+				console.log(body)
 				return {...state, favouritesPet: body};
 			case 'SET_LAST_PAGE':
 				return {...state, isLastPage: body};
@@ -38,8 +37,8 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 				return {...state, isError: body};
 			case 'SET_REMOVE_SUCCESS':
 				return {...state, removeSuccess: body};
-			case 'SET_REMOVED_FAV_ID':
-				return {...state, removedFavId: body}
+			case 'SET_REMOVED_VOTE_ID':
+				return {...state, removedVoteId: body}
 			default:
 		}
 	}
@@ -50,24 +49,27 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 	const getTime = () => format(new Date(), "k':'mm");
 
 // helper function to avoid dublicate code
-	const getVotingPetImages = (res) => {
-		const valueVoting = likes ? 1 : 0;
-		// server API don't allow me get all likes or dislikes pet separately must filter them
-		const imagesId = res.filter(el => el.value === valueVoting);
-		//response of get my Votes don't contain url of image,
-		//that whay I must make request for every vote on another endpoit(/images), for attach to every vote url image
-		Promise.all(imagesId.map(el => imageAPI.getSpecificImage(el.image_id)))
-			.then(res => {
-				const votePets = res.map((el, index) => ({id: imagesId[index].id, image: {id: el.id, url: el.url}}))
-				dispatch({type: 'SET_FAVOUTIRES_PETS', body: votePets});
-				dispatch({type: 'SET_IS_LOADING', body: false});
-				dispatch({type: 'SET_IS_ERROR', body: false});
-				dispatch({type: 'SET_LAST_PAGE', body: false});
-			})
-			.catch(() => {
-					dispatch({type: 'SET_IS_ERROR', body: true})
+	const getVotingPetImages = (response) => {
+		console.log(response)
+		if(response.length === 0){
+			dispatch({type: 'SET_LAST_PAGE', body: true});
+			dispatch({type: 'SET_IS_LOADING', body: false});
+		}else{
+			//response of get my Votes don't contain url of image,
+			//that whay I must make request for every vote on another endpoit(/images), for attach to every vote url image
+			Promise.all(response.map(el => imageAPI.getSpecificImage(el.image_id)))
+				.then(res => {
+					const votePets = res.map((el, index) => ({id: response[index].id, image: {id: el.id, url: el.url}, value: response[index].value}))
+					dispatch({type: 'SET_VOTE_PETS', body: votePets});
 					dispatch({type: 'SET_IS_LOADING', body: false});
-			});
+					dispatch({type: 'SET_IS_ERROR', body: false});
+					dispatch({type: 'SET_LAST_PAGE', body: false});
+				})
+				.catch(() => {
+						dispatch({type: 'SET_IS_ERROR', body: true})
+						dispatch({type: 'SET_IS_LOADING', body: false});
+				});
+		}
 	}
 	
 //initialize my favourites, likes or dislikes pet, handle error, set preloader
@@ -87,7 +89,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 					if(likes || dislikes){
 						getVotingPetImages(res)
 					}else{
-						dispatch({type: 'SET_FAVOUTIRES_PETS', body: res});
+						dispatch({type: 'SET_VOTE_PETS', body: res});
 						dispatch({type: 'SET_LAST_PAGE', body: false});
 						dispatch({type: 'SET_IS_LOADING', body: false});
 						dispatch({type: 'SET_IS_ERROR', body: false});
@@ -115,7 +117,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 					dispatch({type: 'SET_IS_LOADING', body: false});
 				}else if(res.message === 'SUCCESS'){
 					dispatch({type: 'SET_REMOVE_SUCCESS', body: true});
-					dispatch({type: 'SET_REMOVED_FAV_ID', body: id})
+					dispatch({type: 'SET_REMOVED_VOTE_ID', body: id})
 					setTimeout(() => dispatch({type: 'SET_REMOVE_SUCCESS', body: false}), 5000);
 					const limit = +state.limit.match(/.{1,2}$/g)[0];
 					getPetAPI(limit, state.page)
@@ -130,7 +132,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 								if(likes || dislikes){
 									getVotingPetImages(res)
 								}else{
-									dispatch({type: 'SET_FAVOUTIRES_PETS', body: res});
+									dispatch({type: 'SET_VOTE_PETS', body: res});
 									dispatch({type: 'SET_LAST_PAGE', body: false});
 									dispatch({type: 'SET_IS_LOADING', body: false});
 									dispatch({type: 'SET_IS_ERROR', body: false});
