@@ -5,10 +5,10 @@ const instance = axios.create({
 	headers: {'x-api-key': 'dfa2b984-f7ef-4dbe-a06f-6c37c1b17461'},
 	
 });
-// axios.defaults.headers.common['x-api-key'] = "dfa2b984-f7ef-4dbe-a06f-6c37c1b17461";
-// axios.defaults.baseURL = 'https://api.thedogapi.com/v1/';
 
 const sub_id = 'user_123';
+
+// API for vouting. create vote, delete vote, get all my vote 
 export const votingAPI = {
 
 	addVote({image_id, value}){
@@ -30,6 +30,7 @@ export const votingAPI = {
 	
 }
 
+//API for favourites image. Add favourite, delete favourite, get all my favourites image
 export const favouritesAPI = {
 	getMyFavourites(limit, page){
 		return instance.get('/favourites', {params: {limit, page, sub_id}})
@@ -48,6 +49,7 @@ export const favouritesAPI = {
 	}
 }
 
+//API for image
 export const imageAPI = {
 	getSpecificImage(id){
 		return instance.get(`/images/${id}`)
@@ -57,9 +59,20 @@ export const imageAPI = {
 	getRandomPet(){
 		return instance.get('/images/search')
 		 .then(res => res.status === 200 && res.data[0])
-		 .catch(() => 'error')
+		 .catch(() => 'error');
 	},
+	getImageByBreed(breed_id, limit, page, mime_types = ['gif', 'jpg', 'png'], order = 'RANDOM'){
+		return instance.get('/images/search', {params: {limit, page, sub_id, breed_id, mime_types, order}})
+			.then(res => res.status === 200 && res.data[0])
+			.catch(() => 'error');
+	}
 } 
-let array = [1,2];
-(array).push(3);
-console.log(array)
+
+//API for breeds. Get all breeds, search breed by name
+export const breedsAPI = {
+	getBreeds(limit, page){
+		return instance.get('/breeds', {params: {limit, page, sub_id}})
+			.then(res => res.status === 200 && res.data[0])
+			.catch(() => 'error');
+	}
+}

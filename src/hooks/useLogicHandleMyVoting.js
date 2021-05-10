@@ -27,7 +27,6 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 			case 'SET_LIMIT':
 				return {...state, limit: body};
 			case 'SET_VOTE_PETS':
-				console.log(body)
 				return {...state, favouritesPet: body};
 			case 'SET_LAST_PAGE':
 				return {...state, isLastPage: body};
@@ -50,7 +49,6 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 
 // helper function to avoid dublicate code
 	const getVotingPetImages = (response) => {
-		console.log(response)
 		if(response.length === 0){
 			dispatch({type: 'SET_LAST_PAGE', body: true});
 			dispatch({type: 'SET_IS_LOADING', body: false});
