@@ -1,19 +1,19 @@
-import { breedsAPI } from "../../API/api";
+import { breedsAPI, imageAPI } from "../../API/api";
 import { BodyContainter, SearchPanel } from "../../components";
-import { useLogicHandleMyVoting } from "../../hooks/useLogicHandleMyVoting";
+import { useBusinessLayerGallery } from "../../hooks/useBusinessLayerGallery";
 import { BreedsBody, Header } from "../../modules";
 import {wrapper} from './Breeds.module.scss';
 
 const Breeds = () => { 
 
-	// const propsBreedsBody =
+	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed)
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div className={wrapper}>
 				<SearchPanel/>
 				<BodyContainter>
-					<BreedsBody/>
+					<BreedsBody {...propsBreedsBody}/>
 				</BodyContainter>
 			</div>
 		</div>

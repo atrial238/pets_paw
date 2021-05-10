@@ -71,8 +71,9 @@ export const imageAPI = {
 //API for breeds. Get all breeds, search breed by name
 export const breedsAPI = {
 	getBreeds(limit, page){
+		console.log(limit, page)
 		return instance.get('/breeds', {params: {limit, page, sub_id}})
-			.then(res => res.status === 200 && res.data[0])
+			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error');
 	}
 }

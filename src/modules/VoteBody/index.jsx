@@ -5,7 +5,7 @@ import { ActionLog, BackButton, GridItems,
 import {wrapper, back_button, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
-const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavourite, getTime, typeVote}) => {
+const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime, typeVote}) => {
 
 	const propsPaginator = {
 		changeLimit,
@@ -23,7 +23,7 @@ const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, removeFavou
 			imageUrl={pet.image.url} 
 			key={pet.image.id} 
 			id={pet.id} 
-			removeFavourite={removeFavourite} 
+			handleImageEvent={handleImageEvent} 
 			value={pet.value}
 		/>
 	));
@@ -50,7 +50,7 @@ VoteBody.propTypes = {
 	changeLimit: PropTypes.func,
 	setNextPage: PropTypes.func,
 	setPreviousPage: PropTypes.func,
-	removeFavourite: PropTypes.func,
+	handleImageEvent: PropTypes.func,
 	getTime: PropTypes.func,
 	typeVote: PropTypes.string,
 	state: {

@@ -105,7 +105,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 	};
 
 //remove favourite, handle errors, set preloader, handle success message, update my favourites pet
-	const removeFavourite = (id) => {
+	const handleImageEvent = (id) => {
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false})
 		removePetAPI(id)
@@ -146,7 +146,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 		state,
 		setNextPage,
 		setPreviousPage,
-		removeFavourite,
+		handleImageEvent,
 		getTime,
 	}
 }

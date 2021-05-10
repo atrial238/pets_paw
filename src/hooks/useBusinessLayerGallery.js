@@ -58,6 +58,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 						dispatch({type: 'SET_IS_LOADING', body: false});
 						dispatch({type: 'SET_IS_ERROR', body: true});
 					}else{
+						console.log(res)
 						dispatch({type: 'SET_PET_IMAGES', body: res});
 						dispatch({type: 'SET_LAST_PAGE', body: false});
 						dispatch({type: 'SET_IS_LOADING', body: false});
@@ -65,7 +66,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 					}
 				})
 		}
-		state.isSearchByBreed ? setPetImages(getPetsImages) : setPetImages(getPetImagesByBreed)
+		state.isSearchByBreed ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages)
 			
 	}, [state.limit, state.page, getPetsImages, state.isSearchByBreed, getPetImagesByBreed, state.currentBreed]);
 
