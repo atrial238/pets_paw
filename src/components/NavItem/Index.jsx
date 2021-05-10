@@ -22,13 +22,13 @@ const NavItem = ({imgSrc, name, pageLink, backgroundColor}) => {
 	}
 
 	return (
-		<Link to={pageLink} className={wrapper} >
-			 <div className={container + ' ' + styleBackground + ' ' + (isActive ? active : '')}>
+		<Link to={pageLink} className={wrapper + ' ' + (isActive ? active : '')} >
+			 <div className={container + ' ' + styleBackground}>
 				 <div className={img_wrapper}>
 					 <img src={imgSrc} alt="navigation img"/>
 				 </div>
 			 </div>
-			 <div className={button + ' ' + (isActive ? active : '')}>{name}</div>
+			 <div className={button}>{name}</div>
 		</Link>
 
 	)
