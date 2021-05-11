@@ -2,7 +2,7 @@ import PropTypes from  'prop-types';
 import { Dislikes, Likes } from '../Svg';
 import {wrapper, cover, icon_red, icon_green, icon_none} from './ImagePet.module.scss';
   
-const ImagePet = ({imageUrl, key, handleImageEvent, id, value, nameBreed}) => {
+const ImagePet = ({imageUrl, handleImageEvent, id, value, nameBreed}) => {
 	let icon, iconSvg, text, prefix;
 	
 	switch(value){
@@ -28,7 +28,7 @@ const ImagePet = ({imageUrl, key, handleImageEvent, id, value, nameBreed}) => {
 	};
 
 	return (
-		<div key={key} className={wrapper}>
+		<div  className={wrapper}>
 			<img src={imageUrl} alt="pet" />
 			<div className={cover}>
 				<button onClick={() => handleImageEvent(id, true)}>{`${prefix} ${text}`}</button>

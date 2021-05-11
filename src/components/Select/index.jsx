@@ -16,7 +16,7 @@ const Select = ({background, items, selectValue, changeLimit}) => {
 		default:
 			select = '';
 	}
-	const option = items.map(el => <option value={el}>{el}</option>)
+	const option = items.map((el, index) => <option key={el} value={el}>{el}</option>)
 
 	return <select value={selectValue} className={select} onChange={changeLimit}>{option}</select>
 }

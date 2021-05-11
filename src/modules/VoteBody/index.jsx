@@ -18,7 +18,7 @@ const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImage
 		items: state.items
 	};
 
-	const petsImage = state.favouritesPet.map(pet => console.log(pet) || (
+	const petsImage = state.favouritesPet.map(pet => (
 		<ImagePet 
 			imageUrl={pet.image.url} 
 			key={pet.image.id} 

@@ -1,3 +1,4 @@
+import React from 'react';
 import {  BackButton, GridItems, ImagePet, Paginator} from "../../components";
 import { wrapper, back_button, header_breeds, } from './Breeds.module.scss';
 
@@ -13,16 +14,17 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 			isLoading: state.isLoading,
 			items: state.items
 	}
-	console.log(state.petImages)
+	
 	const petsImage = state.petImages.map(pet => (
-		<ImagePet 
-			imageUrl={pet.image.url} 
-			key={pet.image.id} 
-			id={pet.id} 
-			handleImageEvent={setSearchBreeds} 
-			value={2}
-			nameBreed={pet.name}
-		/>
+		<React.Fragment key={pet.id}>
+			<ImagePet 
+				imageUrl={pet.image.url} 
+				id={pet.id} 
+				handleImageEvent={setSearchBreeds} 
+				value={2}
+				nameBreed={pet.name}
+			/>
+		</React.Fragment>
 	));
 
 	return (

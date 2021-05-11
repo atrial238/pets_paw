@@ -22,9 +22,8 @@ export const votingAPI = {
 			.catch(() => 'error')
 	},
 	removeVote(id){
-		console.log(id)
 		return instance.delete(`/votes/${id}`)
-			.then(res => console.log(res) || (res.status === 200 && res.data))
+			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error')
 	}
 	
@@ -71,7 +70,6 @@ export const imageAPI = {
 //API for breeds. Get all breeds, search breed by name
 export const breedsAPI = {
 	getBreeds(limit, page){
-		console.log(limit, page)
 		return instance.get('/breeds', {params: {limit, page, sub_id}})
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error');

@@ -10,7 +10,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 		isLoading: false,
 		isError: false,
 		isSearchByBreed: false,
-		breeds: [],
+		breedsName: [],
 		currentBreed: '',
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
 	}
@@ -37,6 +37,8 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 				return {...state, isSearchByBreed: body};
 			case 'SET_CURRENT_BREED':
 				return {...state, currentBreed: body};
+			case 'SET_BREEDS_NAME':
+				return {...state, breedsName: body.map(el => el.name)}
 			default:
 		}
 	}
@@ -45,11 +47,14 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 
 	useEffect(() => {
 		
-		const setPetImages = (methodAPI) => {
+		const setPetImages = (methodAPI, isAllBreedsRequest) => {
 			const limit = +state.limit.match(/.{1,2}$/g)[0];
 			dispatch({type: 'SET_IS_LOADING', body: true});
 			dispatch({type: 'SET_IS_ERROR', body: false})
-			methodAPI(limit, state.page, state.currentBreed)
+
+			const methodAPIArguments = isAllBreedsRequest ? [] :  [limit, state.page, state.currentBreed];
+
+			methodAPI(...methodAPIArguments)
 				.then(res => {
 					if(res.length === 0){
 						dispatch({type: 'SET_LAST_PAGE', body: true});
@@ -58,15 +63,20 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 						dispatch({type: 'SET_IS_LOADING', body: false});
 						dispatch({type: 'SET_IS_ERROR', body: true});
 					}else{
-						console.log(res)
-						dispatch({type: 'SET_PET_IMAGES', body: res});
 						dispatch({type: 'SET_LAST_PAGE', body: false});
 						dispatch({type: 'SET_IS_LOADING', body: false});
 						dispatch({type: 'SET_IS_ERROR', body: false});
+
+						if(isAllBreedsRequest){
+							dispatch({type: 'SET_BREEDS_NAME', body: res})
+						}else{
+							dispatch({type: 'SET_PET_IMAGES', body: res});
+						}
 					}
 				})
 		}
-		state.isSearchByBreed ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages)
+		state.isSearchByBreed ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
+		setPetImages(getPetsImages, true);
 			
 	}, [state.limit, state.page, getPetsImages, state.isSearchByBreed, getPetImagesByBreed, state.currentBreed]);
 

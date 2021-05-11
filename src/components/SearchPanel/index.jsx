@@ -28,7 +28,6 @@ const SearchPanel = () => {
 				<Formik
 					initialValues={{ name: '' }}
 					onSubmit={(values, actions) => {
-						console.log(1)
 					  setTimeout(() => {
 						 alert(JSON.stringify(values, null, 2));
 						 actions.setSubmitting(false);
