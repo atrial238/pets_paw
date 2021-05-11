@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {  BackButton, GridItems, ImagePet, Paginator, Select} from "../../components";
-import { wrapper, back_button, header_breeds, } from './Breeds.module.scss';
+import {  BackButton, GridItems, ImagePet, Paginator, Placeholder, Select} from "../../components";
+import { wrapper, back_button, header_breeds,preloader, no_items, error} from './Breeds.module.scss';
 
 const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state}) => {
 	
@@ -27,8 +27,8 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 			/>
 		)
 	}
-	const petsImage = state.petImages.map(pet => (
-		<React.Fragment key={pet.id}>{
+	const petsImage = state.petImages.map((pet, index) => (
+		<React.Fragment key={index}>{
 				state.isSearchByBreed && pet.breeds 
 					? getImagePet(pet.url, pet.breeds[0].id, null, pet.breeds[0].name) 
 					: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name)
@@ -50,7 +50,11 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 				<div><Select {...propsSelect} ></Select></div>
 				<div><Paginator {...propsPaginator}/></div>
 			</div> 
-			<GridItems items={petsImage}/>
+			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
+				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
+				|| (state.isLastPage && <div className={no_items}>No items found</div>)
+				|| <GridItems items={petsImage} />
+			}
 		</div>
 	)
 }

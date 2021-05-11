@@ -15,7 +15,7 @@ const Select = ({background, items, selectValue, handleChange}) => {
 		default:
 			select = '';
 	}
-	const option = items.map(el => <option key={el} value={el}>{el}</option>)
+	const option = items.map((el, index)=> <option key={index} value={el}>{el}</option>)
 
 	return <select value={selectValue} className={select} onChange={handleChange}>{option}</select>
 }

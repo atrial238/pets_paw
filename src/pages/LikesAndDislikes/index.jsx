@@ -1,5 +1,5 @@
 import { BodyContainter, SearchPanel } from "../../components";
-import { VoteBody, Header } from "../../modules";
+import { MyVotesBody, Header } from "../../modules";
 import {votingAPI} from '../../API/api';
 import { useLogicHandleMyVoting } from '../../hooks/useLogicHandleMyVoting';
 
@@ -13,7 +13,7 @@ const LikesAndDislikes = () => {
 			<div>
 				<SearchPanel/>
 				<BodyContainter>
-					<VoteBody {...propsFavoritesBody} typeVote='Likes and Dislikes'/>
+					<MyVotesBody {...propsFavoritesBody} typeVote='Likes and Dislikes'/>
 				</BodyContainter>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ import { ActionLog, BackButton, GridItems,
 import {wrapper, back_button, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
-const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime, typeVote}) => {
+const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime, typeVote}) => {
 
 	const propsPaginator = {
 		handleChange: changeLimit,
@@ -44,9 +44,9 @@ const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImage
 	</div>
 	)
 }
-export default VoteBody;
+export default MyVotesBody;
 
-VoteBody.propTypes = {
+MyVotesBody.propTypes = {
 	changeLimit: PropTypes.func,
 	setNextPage: PropTypes.func,
 	setPreviousPage: PropTypes.func,
