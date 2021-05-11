@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 
 import {select_light, select_dark} from './Select.module.scss';
 
-const Select = ({background, items, selectValue, changeLimit}) => {
-
+const Select = ({background, items, selectValue, handleChange}) => {
 
 	let select;
 	switch(background){
@@ -16,9 +15,9 @@ const Select = ({background, items, selectValue, changeLimit}) => {
 		default:
 			select = '';
 	}
-	const option = items.map((el, index) => <option key={el} value={el}>{el}</option>)
+	const option = items.map(el => <option key={el} value={el}>{el}</option>)
 
-	return <select value={selectValue} className={select} onChange={changeLimit}>{option}</select>
+	return <select value={selectValue} className={select} onChange={handleChange}>{option}</select>
 }
 export default Select;
 

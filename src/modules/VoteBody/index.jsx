@@ -8,7 +8,7 @@ import {wrapper, back_button, header_favorites, no_items,
 const VoteBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime, typeVote}) => {
 
 	const propsPaginator = {
-		changeLimit,
+		handleChange: changeLimit,
 		selectValue: state.limit,
 		setNextPage,
 		setPreviousPage,
