@@ -4,7 +4,7 @@ import {  BackButton} from "../../components";
 import { wrapper, back_button, header_breeds, image_wrapper, info_params, info_contant,
 	image_container, info, breed_for, info_body, info_temperament, header_breeds_id} from './InfoBody.module.scss';
 
-const InfoBody = ({imageInfo}) => {
+const InfoBody = ({imageInfo, nameBackButton}) => {
 	const { 
 		breeds:[
 			{
@@ -24,7 +24,7 @@ const InfoBody = ({imageInfo}) => {
 	return (
 		<div className={wrapper}>
 			<div className={header_breeds}>
-				<div className={back_button}><BackButton name='breeds'/></div>
+				<div className={back_button}><BackButton name={nameBackButton}/></div>
 				<div className={header_breeds_id}>Breed id {breedId}</div>
 			</div> 
 			<div className={info_contant}>
@@ -40,8 +40,8 @@ const InfoBody = ({imageInfo}) => {
 							<p>{temperament}</p>
 						</div>
 						<div className={info_params}>
-							<p><span>Height: </span>{height}</p>
-							<p><span>weight: </span>{weight}</p>
+							<p><span>Height: </span>{height} cm</p>
+							<p><span>weight: </span>{weight} kg</p>
 							<p><span>Life span: </span>{lifeSpan}</p>
 						</div>
 					</div>

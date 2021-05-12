@@ -3,7 +3,7 @@ import PropTypes from  'prop-types';
 import { Dislikes, Likes } from '../Svg';
 import {wrapper, cover, icon_red, icon_green, icon_none} from './ImagePet.module.scss';
   
-const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewPage, imageId, value}) => {
+const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewPage, imageId, value, isGalleryPage}) => {
 
 	let icon, iconSvg, text, prefix, targetValue;
 	
@@ -38,14 +38,14 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			prefix = 'Remove from';
 			targetValue = id;
 	};
-
+	const rootPath = isGalleryPage ? 'gallery' : 'breeds'
 	return (
 		<div  className={wrapper}>
 			<img src={imageUrl} alt="pet" />
 			<div className={cover}>
 				{isImageOpenInNewPage 
-					? <Link to={`/breeds/${imageId}`}><button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button></Link>
-					:<button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button>
+					? <Link to={`/${rootPath}/${imageId}`}><button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button></Link>
+					: <button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button>
 				}
 				
 			</div>

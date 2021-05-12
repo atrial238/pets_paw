@@ -61,7 +61,7 @@ const Info = props => {
 					<div className={Info_contant}>
 					{isError 
 						? <div className={error}>Oops! Something went wrong.</div>
-						: (isLoading && <Placeholder/>) || <InfoBody imageInfo={imageInfo}/>
+						: (isLoading && <Placeholder/>) || <InfoBody imageInfo={imageInfo} nameBackButton={props.nameBackButton}/>
 					}
 					</div>
 				</BodyContainter>

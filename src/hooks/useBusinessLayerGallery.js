@@ -75,7 +75,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 	const setPetImages = (methodAPI, isAllBreedsRequest) => {
 		const limit = +state.limit.match(/.{1,2}$/g)[0];
 		dispatch({type: 'SET_IS_LOADING', body: true});
-		dispatch({type: 'SET_IS_ERROR', body: false})
+		dispatch({type: 'SET_IS_ERROR', body: false});
 		//define specific breed for seacrch
 		const currentBreed = isGalleryPage ? state.currentBreedForGallery : state.currentBreed;
 		const nameBreedForSearch = state.isSearchByBreed ?  state.breedsName.find(el => el.name === currentBreed ).id : null;
@@ -93,7 +93,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 			default:
 				type= ['gif','jpg', 'png']
 		}
-		console.log(nameBreedForSearch, state.typeBreedSearch, type )
+	
 		const methodAPIArguments = isAllBreedsRequest ? [] : [limit, state.page, nameBreedForSearch, type, state.orderBreedSearch.toUpperCase()];
 
 		methodAPI(...methodAPIArguments)
@@ -136,7 +136,10 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 	}
 
 //  get list names of all breeds for dropdown select only one time
-	useEffect(() => setPetImages(getPetsImages, true), []);
+	useEffect(() => {
+		setPetImages(getPetsImages, true);
+		dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: isGalleryPage})
+	}, []);
 
 // manage next page, previous page, current breed. Depends what change
 	useEffect(() => {
@@ -173,6 +176,8 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		dispatch({type: 'SET_IS_SEARCH_BY_BREED', body: true});
 		dispatch({type: 'SET_UPDATE_SEARCH'});
 		dispatch({type: 'SET_LAST_PAGE', body: false});
+		dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: true})
+
 
 	}
 	const handleCurrentBreedForGallery = (event) => {
@@ -193,6 +198,6 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		handleOrderBreedForSearch,
 		handleTypeBreedForSearch,
 		updateSearch,
-		state
+		state,
 	}
 }
