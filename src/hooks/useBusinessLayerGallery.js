@@ -1,6 +1,6 @@
 import {useReducer, useEffect} from 'react';
 
-export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGallerPage = false) => {
+export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGalleryPage = false) => {
 
 	const initState = {
 		page: 0,
@@ -13,10 +13,12 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		isSearchByBreed: false,
 		breedsName: [],
 		currentBreed: 'All breeds',
+		currentBreedForGallery: 'All breeds',
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
 		isImageOpenInNewPage: false,
 		orderBreedSearch: 'Random',
-		typeBreedSearch: ['gif', 'jpg', 'png'],
+		typeBreedSearch: 'All',
+		updateSearch: false
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -49,6 +51,14 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 				return {...state, typeBreedSearch: body}
 			case 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE':
 				return {...state, isImageOpenInNewPage: body};
+			case 'SET_CURRENT_PAGE_FOR_GALLERY':
+				return {...state, currentBreedForGallery: body};
+			case 'SET_ORDER_BREED_FOR_SEARCH':
+				return {...state, orderBreedSearch: body};
+			case 'SET_TYPE_BREED_FOR_SEARCH':
+				return {...state, typeBreedSearch: body};
+			case 'SET_UPDATE_SEARCH':
+				return {...state, updateSearch: !state.updateSearch};
 			case 'SET_BREEDS_NAME':
 				return {...state, breedsName: [{name: 'All breeds', id: null}, ...body.map(el => ({name: el.name, id: el.id}))]};
 			default:
@@ -67,10 +77,24 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false})
 		//define specific breed for seacrch
-		const nameBreedForSearch = state.isSearchByBreed ? state.breedsName.find(el => el.name === state.currentBreed).id : null;
+		const currentBreed = isGalleryPage ? state.currentBreedForGallery : state.currentBreed;
+		const nameBreedForSearch = state.isSearchByBreed ?  state.breedsName.find(el => el.name === currentBreed ).id : null;
 		//define arguments. without arguments get list names of all breeds for dropdown select.
 		// With arguments get images for specific breeds by page, limit, order(RANDOM,DESC, ASC), type(gif, jpg, png);
-		const methodAPIArguments = isAllBreedsRequest ? [] : [limit, state.page, nameBreedForSearch, state.typeBreedSearch, state.orderBreedSearch];
+		let type;
+		
+		switch(state.typeBreedSearch){
+			case 'Static':
+				type = 'jpg, png';
+				break;
+			case 'Animated':
+				type= 'gif';
+				break;
+			default:
+				type= ['gif','jpg', 'png']
+		}
+		console.log(nameBreedForSearch, state.typeBreedSearch, type )
+		const methodAPIArguments = isAllBreedsRequest ? [] : [limit, state.page, nameBreedForSearch, type, state.orderBreedSearch.toUpperCase()];
 
 		methodAPI(...methodAPIArguments)
 			.then(res => {
@@ -106,13 +130,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 					dispatch({type: 'SET_BREEDS_NAME', body: res})
 				}else{
 					//set images for main contant
-					if(isGallerPage){
-						const validPetImages = res.filter(el => el.breeds.length)
-						dispatch({type: 'SET_PET_IMAGES', body: validPetImages});
-					}else{
-						dispatch({type: 'SET_PET_IMAGES', body: res});
-
-					}
+					dispatch({type: 'SET_PET_IMAGES', body: res});
 				}
 			})
 	}
@@ -122,8 +140,8 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 
 // manage next page, previous page, current breed. Depends what change
 	useEffect(() => {
-		state.isSearchByBreed || isGallerPage ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
-	}, [state.limit, state.page, state.currentBreed]);
+		state.isSearchByBreed || isGalleryPage ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
+	}, [state.limit, state.page, state.currentBreed, state.updateSearch]);
 
 //functions for manage pagination
 	const setNextPage = () => dispatch({type: 'NEXT_PAGE'});
@@ -151,14 +169,30 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		dispatch({type: 'SET_AMOUT_BREEDS', body: null});
 	}
 
-	const setImageInfo = () => {
-		dispatch({type: 'SET_IS_IMAGE_INFO'})
+	const updateSearch = () => {
+		dispatch({type: 'SET_IS_SEARCH_BY_BREED', body: true});
+		dispatch({type: 'SET_UPDATE_SEARCH'});
+		dispatch({type: 'SET_LAST_PAGE', body: false});
+
+	}
+	const handleCurrentBreedForGallery = (event) => {
+		dispatch({type: 'SET_CURRENT_PAGE_FOR_GALLERY', body: event.target.value})
+	}
+	const handleOrderBreedForSearch = (event) => {
+		dispatch({type: 'SET_ORDER_BREED_FOR_SEARCH', body: event.target.value})
+	}
+	const handleTypeBreedForSearch = (event) => {
+		dispatch({type: 'SET_TYPE_BREED_FOR_SEARCH', body: event.target.value})
 	}
 	return {
 		setSearchBreeds,
 		setNextPage,
 		setPreviousPage,
 		changeLimit,
+		handleCurrentBreedForGallery,
+		handleOrderBreedForSearch,
+		handleTypeBreedForSearch,
+		updateSearch,
 		state
 	}
 }

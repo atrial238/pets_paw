@@ -5,7 +5,8 @@ import { BackButton, GridItems, ImagePet, Paginator, Placeholder } from "../../c
 import { wrapper, back_button, preloader, error, no_items} from './GalleryBody.module.scss';
 import HeaderGallery from "./HeaderGallery/HeaderGallery";
 
-const GalleryBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state, handleImageInfo}) => {
+const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, updateSearch,
+	changeLimit, state, handleImageInfo, handleCurrentBreedForGallery, handleOrderBreedForSearch}) => {
 	const propsPaginator = {
 		handleChange: changeLimit,
 		selectValue: state.limit,
@@ -29,24 +30,24 @@ const GalleryBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit
 			/>
 		)
 	}
-	const petsImage = state.petImages.map((pet, index) => console.log(pet) || (
+	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
-			
-
-				// state.isSearchByBreed && pet.breeds 
-				// 	? getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3)
-				// 	: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name, null, 2)
-				pet.breeds && getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3)
-
+			pet.breeds.length 
+				? pet.breeds && getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3)
+				: pet.breeds && getImagePet(pet.url, 'unknown', handleImageInfo, 'unknown', pet.id, 3)
 		}</React.Fragment>
 	));
 
 //props for Select 
 	const propsSelectBeeds = {
-		background:'light',
-		items: state.breedsName.map(el => el.name) ,
-		selectValue: state.currentBreed ,
-		handleChange: setSearchBreeds
+		items: state.breedsName.map(el => el.name),
+		selectValueBreeds: state.currentBreedForGallery,
+		selectValueOrder: state.orderBreedSearch,
+		selectValueType: state.typeBreedSearch,
+		handleCurrentBreedForGallery: handleCurrentBreedForGallery,
+		handleOrderBreedForSearch: handleOrderBreedForSearch,
+		handleTypeBreedForSearch: handleTypeBreedForSearch,
+		updateSearch:updateSearch
 	}
 	return (
 		<div className={wrapper}>

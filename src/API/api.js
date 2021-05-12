@@ -60,7 +60,8 @@ export const imageAPI = {
 		 .then(res => res.status === 200 && res.data[0])
 		 .catch(() => 'error');
 	},
-	getImageByBreed(limit, page, breed_id, mime_types = ['gif', 'jpg', 'png'], order = 'RANDOM'){
+	getImageByBreed(limit, page, breed_id, mime_types = null, order = 'RANDOM'){
+		console.log(order)
 		return instance.get('/images/search', {params: {limit, page, sub_id, breed_id, mime_types, order}})
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error');
