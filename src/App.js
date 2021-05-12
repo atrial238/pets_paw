@@ -6,7 +6,7 @@ import {Breeds, Favourites, Gallery, Home, Voting, LikesAndDislikes, Info,} from
 function App() {
 
 	const [imageInfo, setImageInfo] = useState([]);
-console.log(imageInfo)
+
   return (
 	<div className='app'>
 		<Route exact path={['/', '/home']} component={Home}/>
@@ -24,4 +24,3 @@ console.log(imageInfo)
 }
 
 export default App;
-console.log(' d' % 1)

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Back from './Back';
-import {wrapper, title } from './BackButton.module.scss';
+import {wrapper, title, back_button } from './BackButton.module.scss';
 
 const BackButton = ({name}) => {
-	
+	const history = useHistory();
 	return (
 		<div className={wrapper}>
-			<Link to='/' ><Back/></Link>
+			<div onClick={() => history.goBack()}  className={back_button}><Back/></div>
 			<div className={title}>{name}</div>
 		</div>  
 	)

@@ -21,17 +21,21 @@ const NavItem = ({imgSrc, name, pageLink, backgroundColor}) => {
 			styleBackground = ''
 	}
 
-	return (
-		<Link to={pageLink} className={wrapper + ' ' + (isActive ? active : '')} >
-			 <div className={container + ' ' + styleBackground}>
-				 <div className={img_wrapper}>
-					 <img src={imgSrc} alt="navigation img"/>
-				 </div>
-			 </div>
-			 <div className={button}>{name}</div>
-		</Link>
-
+	const insidesNavItem = (
+		<>
+			<div className={container + ' ' + styleBackground}>
+				<div className={img_wrapper}>
+					<img src={imgSrc} alt="navigation img"/>
+				</div>
+			</div>
+			<div className={button}>{name}</div>
+		</>
 	)
+
+	return isActive
+		? <div className={wrapper + ' ' + (isActive ? active : '')}>{insidesNavItem}</div>
+		: <Link to={pageLink} className={wrapper + ' ' + (isActive ? active : '')} >{insidesNavItem}</Link>
+
 }
 export default NavItem;
 
