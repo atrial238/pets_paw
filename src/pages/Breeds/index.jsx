@@ -4,16 +4,20 @@ import { useBusinessLayerGallery } from "../../hooks/useBusinessLayerGallery";
 import { BreedsBody, Header } from "../../modules";
 import {wrapper} from './Breeds.module.scss';
 
-const Breeds = () => { 
+const Breeds = ({setImageInfo}) => { 
 
-	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed)
+	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed);
+	const handleImageInfo = (id) => {
+		const imageInfo = propsBreedsBody.state.petImages.find(el => el.id === id);
+		setImageInfo(imageInfo)
+	}
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div className={wrapper}>
 				<SearchPanel/>
 				<BodyContainter>
-					<BreedsBody {...propsBreedsBody}/>
+					<BreedsBody {...propsBreedsBody} handleImageInfo={handleImageInfo}/>
 				</BodyContainter>
 			</div>
 		</div>

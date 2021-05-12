@@ -14,6 +14,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 		breedsName: [],
 		currentBreed: 'All breeds',
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
+		isImageOpenInNewPage: false
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -39,7 +40,9 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 			case 'SET_CURRENT_BREED':
 				return {...state, currentBreed: body};
 			case 'SET_AMOUT_BREEDS':
-				return {...state, amoutBreeds: body}
+				return {...state, amoutBreeds: body};
+			case 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE':
+				return {...state, isImageOpenInNewPage: body}
 			case 'SET_BREEDS_NAME':
 				return {...state, breedsName: [{name: 'All breeds', id: null}, ...body.map(el => ({name: el.name, id: el.id}))]};
 			default:
@@ -127,6 +130,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 	const setSearchBreeds = (event) => {
 		const value = event.target ? event.target.value : event;
 		const isSearchByBreed = value !== 'All breeds';
+		dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: isSearchByBreed})
 		dispatch({type: 'SET_LAST_PAGE', body: false});
 		dispatch({type: 'SET_PAGE_ZERO'})
 		dispatch({type: 'SET_IS_SEARCH_BY_BREED', body: isSearchByBreed});
@@ -134,6 +138,9 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 		dispatch({type: 'SET_AMOUT_BREEDS', body: null});
 	}
 
+	const setImageInfo = () => {
+		dispatch({type: 'SET_IS_IMAGE_INFO'})
+	}
 	return {
 		setSearchBreeds,
 		setNextPage,

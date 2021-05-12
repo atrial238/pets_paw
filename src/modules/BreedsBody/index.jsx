@@ -3,7 +3,7 @@ import React from 'react';
 import {  BackButton, GridItems, ImagePet, Paginator, Placeholder, Select} from "../../components";
 import { wrapper, back_button, header_breeds,preloader, no_items, error} from './Breeds.module.scss';
 
-const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state}) => {
+const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state, handleImageInfo}) => {
 	
 	const propsPaginator = {
 			handleChange: changeLimit,
@@ -16,22 +16,24 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 			items: state.items
 	}
 
-	const getImagePet = (imagePet, id, handleImageEvent, nameBreed) => {
+	const getImagePet = (imagePet, id, handleImageEvent, nameBreed, imageId, value) => {
 		return (
 			<ImagePet 
 				imageUrl={imagePet} 
 				id={id} 
 				handleImageEvent={handleImageEvent} 
-				value={2}
+				value={value}
 				nameBreed={nameBreed}
+				isImageOpenInNewPage={state.isImageOpenInNewPage}
+				imageId={imageId}
 			/>
 		)
 	}
 	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
 				state.isSearchByBreed && pet.breeds 
-					? getImagePet(pet.url, pet.breeds[0].id, null, pet.breeds[0].name) 
-					: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name)
+					? getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3)
+					: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name, null, 2)
 		}</React.Fragment>
 	));
 

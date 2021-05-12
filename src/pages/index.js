@@ -4,3 +4,7 @@ export {default as Breeds} from './Breeds';
 export {default as Gallery} from './Gallery';
 export {default as Favourites} from './Favourites';
 export {default as LikesAndDislikes} from './LikesAndDislikes';
+export {default as Info} from './Info';
+
+
+
