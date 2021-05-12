@@ -1,27 +1,27 @@
 import { Select } from '../../../components';
 import {MainActionButton} from '../../../components/Svg';
 
-import {wrapper, select, select_limit, wrapper_select_limit} from './HeaderGallery.module.scss';
+import {wrapper, select, select_update, wrapper_select_update, update} from './HeaderGallery.module.scss';
 
-const HeaderGallery = () => {
+const HeaderGallery = ({propsSelectBeeds}) => {
 	return (
 		<div className={wrapper}>
 			<div className={select}>
 				<label htmlFor="order">order</label>
-				<Select  name='Random' background='light' items={['Desc', 'Asc']}/>
+				<Select  selectValue='Random' background='light' items={['Random', 'Desc', 'Asc']}/>
 			</div>
 			<div className={select}>
 				<label htmlFor="type">type</label>
-				<Select name='Static' background='light' items={['All', 'Animated']}/>
+				<Select selectValue='All' background='light' items={['All', 'Static', 'Animated']}/>
 			</div>
 			<div className={select}>
 				<label htmlFor="breed">breed</label>
-				<Select name='None' background='light' items={['All', 'All', 'All', 'All', 'All', 'All', 'All', 'All', 'All']}/>
+				<Select {...propsSelectBeeds}/>
 			</div>
-			<div className={select + ' ' + select_limit}>
-				<label htmlFor="limit">limit</label>
-				<div className={wrapper_select_limit}>
-					<div><Select name='5 items per page' background='light' items={['10 items per page', '15 items per page', '20 items per page']}/></div>
+			<div className={select + ' ' + select_update}>
+				<label htmlFor="limit"></label>
+				<div className={wrapper_select_update}>
+					<div  >update</div>
 					<button><MainActionButton/></button>
 				</div>
 			</div>

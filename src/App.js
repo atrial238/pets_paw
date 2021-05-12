@@ -13,7 +13,8 @@ function App() {
 		<Route exact path='/voting' component={Voting}/>
 		<Route exact path='/breeds' render={() => <Breeds setImageInfo={setImageInfo}/>}/>
 		<Route exact path='/breeds/:imageId' render={() => <Info imageInfo={imageInfo}/>}/>
-		<Route exact path='/gallery' component={Gallery}/>
+		<Route exact path='/gallery' render={() => <Gallery setImageInfo={setImageInfo}/>}/>
+		<Route exact path='/gallery:imageId' render={() => <Info imageInfo={imageInfo}/>}/>
 		<Route exact path='/favourites' component={Favourites}/>
 		<Route exact path='/likes-and-dislikes' component={LikesAndDislikes}/>
 		

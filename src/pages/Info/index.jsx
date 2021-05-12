@@ -64,7 +64,6 @@ const Info = props => {
 						: (isLoading && <Placeholder/>) || <InfoBody imageInfo={imageInfo}/>
 					}
 					</div>
-					
 				</BodyContainter>
 			</div>
 		</div>

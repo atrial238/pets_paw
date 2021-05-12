@@ -9,30 +9,42 @@
 	padding: 10px 20px 20px 20px;
 	margin: 20px 0;
 	.select {
-		&.select_limit {
-			.wrapper_select_limit {
+		&.select_update {
+			.wrapper_select_update {
 				display: flex;
-				justify-content: space-between;
-				div {
-					flex: 1 1 auto;
-					margin-right: 10px;
-				}
-				button {
-					flex: 0 0 40px;
-					background: #FFFFFF;
-					border-radius: 10px;
-					transition: all .4s;
-						svg {
-							fill: #FF868E;
-							transition: all .4s;
-						}
-						&:hover {
+				justify-content: center;
+				align-items: center;
+				background: #FFFFFF;
+				border-radius: 10px;
+				cursor: pointer;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				font-weight: 500;
+				transition: all .4s;
+					&:hover {
+						background: #FF868E;
+						color: white;
+						button {
 							background: #FF868E;
 							svg {
 								fill: white;
 							}
 						}
-				}
+					}
+					button {
+						flex: 0 0 40px;
+						height: 40px;
+						background: #FFFFFF;
+						border-radius: 10px;
+						transition: all .4s;
+							svg {
+								fill: #FF868E;
+								transition: all .4s;
+							}
+							&:hover {
+								
+							}
+					}
 			}
 		}
 		label {

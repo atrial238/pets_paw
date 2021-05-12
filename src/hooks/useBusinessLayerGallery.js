@@ -1,6 +1,6 @@
 import {useReducer, useEffect} from 'react';
 
-export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
+export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGallerPage = false) => {
 
 	const initState = {
 		page: 0,
@@ -14,7 +14,9 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 		breedsName: [],
 		currentBreed: 'All breeds',
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
-		isImageOpenInNewPage: false
+		isImageOpenInNewPage: false,
+		orderBreedSearch: 'Random',
+		typeBreedSearch: ['gif', 'jpg', 'png'],
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -41,8 +43,12 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 				return {...state, currentBreed: body};
 			case 'SET_AMOUT_BREEDS':
 				return {...state, amoutBreeds: body};
+			case 'SET_ORDER_BREED_SEARCH':
+				return {...state, orderBreedSearch: body};
+			case 'SET_TYPE_BREEDS_SEARCH':
+				return {...state, typeBreedSearch: body}
 			case 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE':
-				return {...state, isImageOpenInNewPage: body}
+				return {...state, isImageOpenInNewPage: body};
 			case 'SET_BREEDS_NAME':
 				return {...state, breedsName: [{name: 'All breeds', id: null}, ...body.map(el => ({name: el.name, id: el.id}))]};
 			default:
@@ -61,15 +67,16 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false})
 		//define specific breed for seacrch
-		const nameBreedForSearch = state.isSearchByBreed ? state.breedsName.find(el => el.name === state.currentBreed).id : 'some';
-		//define arguments. without arguments get list names of all breeds for dropdown select. With arguments get images for specific breeds by page and limit
-		const methodAPIArguments = isAllBreedsRequest ? [] : [limit, state.page, nameBreedForSearch];
+		const nameBreedForSearch = state.isSearchByBreed ? state.breedsName.find(el => el.name === state.currentBreed).id : null;
+		//define arguments. without arguments get list names of all breeds for dropdown select.
+		// With arguments get images for specific breeds by page, limit, order(RANDOM,DESC, ASC), type(gif, jpg, png);
+		const methodAPIArguments = isAllBreedsRequest ? [] : [limit, state.page, nameBreedForSearch, state.typeBreedSearch, state.orderBreedSearch];
 
 		methodAPI(...methodAPIArguments)
 			.then(res => {
 				
 				if(state.isSearchByBreed && !state.amoutBreeds){
-					//get all images of specific breeds for calculating is this the last page
+					//get all images of specific breeds for calculating is current page the last page
 					getPetImagesByBreed(100, null, nameBreedForSearch)
 						.then(res => {
 							if(res === 'error'){
@@ -99,7 +106,13 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 					dispatch({type: 'SET_BREEDS_NAME', body: res})
 				}else{
 					//set images for main contant
-					dispatch({type: 'SET_PET_IMAGES', body: res});
+					if(isGallerPage){
+						const validPetImages = res.filter(el => el.breeds.length)
+						dispatch({type: 'SET_PET_IMAGES', body: validPetImages});
+					}else{
+						dispatch({type: 'SET_PET_IMAGES', body: res});
+
+					}
 				}
 			})
 	}
@@ -109,7 +122,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed) => {
 
 // manage next page, previous page, current breed. Depends what change
 	useEffect(() => {
-		state.isSearchByBreed ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
+		state.isSearchByBreed || isGallerPage ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
 	}, [state.limit, state.page, state.currentBreed]);
 
 //functions for manage pagination
