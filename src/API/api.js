@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import FormData from 'form-data';
 const instance = axios.create({
 	baseURL: 'https://api.thedogapi.com/v1/',
 	headers: {'x-api-key': 'dfa2b984-f7ef-4dbe-a06f-6c37c1b17461'},
@@ -62,6 +62,24 @@ export const imageAPI = {
 	},
 	getImageByBreed(limit, page, breed_id, mime_types = null, order = 'RANDOM'){
 		return instance.get('/images/search', {params: {limit, page, sub_id, breed_id, mime_types, order}})
+			.then(res => res.status === 200 && res.data)
+			.catch(() => 'error');
+	},
+	getMyImages(limit, page){
+		console.log('get my images')
+		return instance.get('/images', {params: {limit, page}})
+		.then(res => res.status === 200 && res.data)
+		.catch(() => 'error');
+	},
+	uploadImages(file){
+		const formData = new FormData();
+		formData.append('file', file);
+		return instance.post('/images/upload', formData, {params: {sub_id}}, {headers: {'Content-Type': 'multipart/form-data'}})
+			.then(res => res.status === 200 && res.data)
+			.catch(() => 'error');
+	},
+	deleteMyImage(id){
+		return instance.delete(`/images/${id}`)
 			.then(res => res.status === 200 && res.data)
 			.catch(() => 'error');
 	}

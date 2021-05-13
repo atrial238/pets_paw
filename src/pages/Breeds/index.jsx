@@ -1,10 +1,11 @@
+import React from 'react';
 import { breedsAPI, imageAPI } from "../../API/api";
 import { BodyContainter, SearchPanel } from "../../components";
 import { useBusinessLayerGallery } from "../../hooks/useBusinessLayerGallery";
 import { BreedsBody, Header } from "../../modules";
 import {wrapper} from './Breeds.module.scss';
 
-const Breeds = ({setImageInfo, setnameBackButton}) => { 
+const Breeds = () => { 
 
 	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed);
 	
@@ -20,4 +21,4 @@ const Breeds = ({setImageInfo, setnameBackButton}) => {
 		</div>
 	)
 }
-export default Breeds;
+export default React.memo(Breeds);

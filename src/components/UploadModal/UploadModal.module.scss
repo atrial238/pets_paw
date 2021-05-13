@@ -1,0 +1,29 @@
+.header_text {
+	font-weight: 500;
+	font-size: 36px;
+	line-height: 52px;
+	color: #1D1D1D;
+	text-align: center;
+}
+.wrapper_button {
+	display: flex;
+	justify-content: flex-end;
+	.button {
+		width: 40px;
+		height: 40px;
+		background: #FFFFFF;
+		border-radius: 10px;
+		transition: all .4s;
+		svg {
+			fill: #FF868E;
+			transition: all .4s;
+		}
+		&:hover {
+			background: #FF868E;
+			svg {
+				fill: #FFFFFF;
+			}
+		}
+	}
+	
+}

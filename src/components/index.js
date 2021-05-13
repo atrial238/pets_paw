@@ -11,5 +11,6 @@ export {default as GridItems} from './GridItems';
 export {default as Placeholder} from './Placeholder';
 export {default as Paginator} from './Paginator';
 export {default as ImagePet} from './ImagePet';
+export {default as UploadModal} from './UploadModal';
 
 

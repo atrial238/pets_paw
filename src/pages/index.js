@@ -5,6 +5,8 @@ export {default as Gallery} from './Gallery';
 export {default as Favourites} from './Favourites';
 export {default as LikesAndDislikes} from './LikesAndDislikes';
 export {default as Info} from './Info';
+export {default as MyDogs} from './MyDogs';
+
 
 
 

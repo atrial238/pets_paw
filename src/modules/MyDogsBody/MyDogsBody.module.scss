@@ -1,0 +1,119 @@
+.wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	.header_my_dogs {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+		.back_button {
+			
+		}
+		.paginator{
+
+		}
+		.upload_button{
+			height: 100%;
+		}
+	}
+	
+	.img_voting_dog{
+		margin-top: 20px;
+		height: 360px;
+		width: 100%;
+		position: relative;
+		margin-bottom: 50px;
+		flex: 0 0 360px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			border-radius: 20px;
+		}
+		.voting {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background: #FFFFFF;
+			border: 4px solid #FFFFFF;
+			border-radius: 22px;
+			width: 256px;
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			transform: translate(-50%, 50%);
+			button {
+				width: 80px;
+				height: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: all .4s;
+					svg {
+						fill: white;
+						transition: all .4s;
+					}
+			}
+			.likes {
+				background: #97EAB9;
+				border-radius: 20px 0px 0px 20px;
+					&:hover {
+						background: rgba(151, 234, 185, 0.3);
+						svg {
+							fill: #97EAB9;
+						}
+					}
+			}
+			.favourites {
+				background: #FF868E;
+					svg {
+						fill: none;
+						stroke: white;
+					}
+					&:hover {
+						background: rgba(255, 134, 142, 0.3);
+						svg {
+							fill: none;
+							stroke: #FF868E;
+						}
+					}
+					&.active {
+						background: #FF868E;
+						cursor: auto;
+						svg {
+							fill: white;
+							stroke:  white;
+						}
+						&:hover {
+							svg {
+								fill: white;
+								stroke:  white;
+							}
+						}
+					}
+			}
+			.dislikes {
+				background: #FFD280;
+				border-radius: 0px 20px 20px 0px;
+					&:hover {
+						background: rgba(255, 210, 128, 0.3);
+						svg {
+							fill: #FFD280;
+						}
+					}
+			}
+		}
+		&.error {
+			color: #FF868E;
+		}
+	}
+	.action_log {
+		flex: 1 1 auto;
+		overflow-y: auto;
+		list-style-type: none;
+	}
+}

@@ -6,3 +6,6 @@ export {default as SortAZ} from './SortAZ';
 export {default as SortZA} from './SortZA';
 export {default as Upload} from './Upload';
 export {default as MainActionButton} from './MainActionButton';
+export {default as MyDog} from './MyDog';
+export {default as Close} from './Close';
+

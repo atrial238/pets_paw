@@ -32,6 +32,12 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			prefix = nameBreed;
 			targetValue = imageId;
 			break;
+		case 4:
+			icon = icon_none;
+			text = 'my pets';
+			prefix = 'Remove from'
+			targetValue = imageId;
+			break;
 		default:
 			icon = icon_none;
 			text = 'Favourite';
