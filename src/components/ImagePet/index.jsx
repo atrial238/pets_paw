@@ -44,7 +44,7 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			<img src={imageUrl} alt="pet" />
 			<div className={cover}>
 				{isImageOpenInNewPage 
-					? <Link to={`/${rootPath}/${imageId}`}><button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button></Link>
+					? <Link to={`/info/${imageId}`}><button >{`${prefix} ${text}`}</button></Link>
 					: <button onClick={() => handleImageEvent(targetValue)}>{`${prefix} ${text}`}</button>
 				}
 				

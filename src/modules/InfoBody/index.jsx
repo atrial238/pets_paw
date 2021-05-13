@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {  BackButton} from "../../components";
+import { templateImageInfo } from '../../pages/Info';
 import { wrapper, back_button, header_breeds, image_wrapper, info_params, info_contant,
 	image_container, info, breed_for, info_body, info_temperament, header_breeds_id} from './InfoBody.module.scss';
 
-const InfoBody = ({imageInfo, nameBackButton}) => {
+const InfoBody = ({imageInfo = templateImageInfo}) => {
+	
 	const { 
 		breeds:[
 			{
@@ -20,11 +21,11 @@ const InfoBody = ({imageInfo, nameBackButton}) => {
 		id: imageId,
 		url
 	} = imageInfo;
-		
+	
 	return (
 		<div className={wrapper}>
 			<div className={header_breeds}>
-				<div className={back_button}><BackButton name={nameBackButton}/></div>
+				<div className={back_button}><BackButton name='info' /></div>
 				<div className={header_breeds_id}>Breed id {breedId}</div>
 			</div> 
 			<div className={info_contant}>

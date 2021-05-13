@@ -1,3 +1,4 @@
+import React from 'react';
 import { Greetings, Logo, NavItem } from '../../components';
 import {wrapper, navigation, logo, greetings} from './Header.module.scss';
 
@@ -18,4 +19,4 @@ const Header = () => {
 		</div>
 	)
 }
-export default Header; 
+export default  React.memo(Header); 

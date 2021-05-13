@@ -7,18 +7,14 @@ import {wrapper} from './Breeds.module.scss';
 const Breeds = ({setImageInfo, setnameBackButton}) => { 
 
 	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed);
-	const handleImageInfo = (id) => {
-		const imageInfo = propsBreedsBody.state.petImages.find(el => el.id === id);
-		setImageInfo(imageInfo)
-		setnameBackButton('breeds')
-	}
+	
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div className={wrapper}>
 				<SearchPanel/>
 				<BodyContainter>
-					<BreedsBody {...propsBreedsBody} handleImageInfo={handleImageInfo}/>
+					<BreedsBody {...propsBreedsBody} />
 				</BodyContainter>
 			</div>
 		</div>

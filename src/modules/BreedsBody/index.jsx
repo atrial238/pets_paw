@@ -3,7 +3,7 @@ import React from 'react';
 import {  BackButton, GridItems, ImagePet, Paginator, Placeholder, Select} from "../../components";
 import { wrapper, back_button, header_breeds,preloader, no_items, error} from './Breeds.module.scss';
 
-const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state, handleImageInfo}) => {
+const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state}) => {
 	
 	const propsPaginator = {
 			handleChange: changeLimit,
@@ -32,7 +32,7 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
 				state.isSearchByBreed && pet.breeds 
-					? getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3)
+					? getImagePet(pet.url, pet.breeds[0].id, null, pet.breeds[0].name, pet.id, 3)
 					: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name, null, 2)
 		}</React.Fragment>
 	));

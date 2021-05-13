@@ -6,52 +6,54 @@ import { BodyContainter, Placeholder, SearchPanel } from "../../components";
 import {  Header, InfoBody } from "../../modules";
 import {error, Info_contant} from './Info.module.scss';
 
-const Info = props => { 
+export const templateImageInfo = {
+	breeds:[
+		{
+			bred_for: 'unknown',
+			height: {metric: 'unknown'},
+			id: 'unknown',
+			life_span: 'unknown',
+			name: 'unknown',
+			temperament: 'unknown',
+			weight: {metric: 'unknown'},
+		}
+	],
+	id: '',
+	url: ''
+}
 
-	const templateImageInfo = {
-			breeds:[
-				{
-					bred_for: '',
-					height: {metric: ''},
-					id: '',
-					life_span: '',
-					name: '',
-					temperament: '',
-					weight: {metric: ''},
-				}
-			],
-			id: '',
-			url: ''
-	}
+const Info = () => { 
 
 	const {imageId} = useParams();
-	const defaultImageInfo = Array.isArray(props.imageInfo) ? templateImageInfo : props.imageInfo ;
-
-	const [imageInfo, setImageInfo] = useState(defaultImageInfo);
+	const [imageInfo, setImageInfo] = useState();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
-
-	useEffect(() => {
 	
-		if(Array.isArray(props.imageInfo)){
-			setIsLoading(true);
-			setIsError(false);
-
-			imageAPI.getSpecificImage(imageId)
-				.then(res => {
-					if(res === 'error'){
-						setIsLoading(false);
-						setIsError(true);
+	useEffect(() => {
+		setIsLoading(true);
+		setIsError(false);
+	
+		imageAPI.getSpecificImage(imageId)
+			.then(res => {
+				if(res === 'error'){
+					setIsLoading(false);
+					setIsError(true);
+				}else{
+					setIsLoading(false);
+					setIsError(false);
+					if(!res.breeds){
+						templateImageInfo.id = res.id;
+						templateImageInfo.url = res.url;
+						setImageInfo(templateImageInfo);
 					}else{
-						setImageInfo(res);
-						setIsLoading(false);
-						setIsError(false);
+						setImageInfo(res)
 					}
 				}
-			)
-		}
-	}, [imageId]);
-
+			}
+		)
+		
+	}, []);
+	
 	return (
 		<div className='wrapper_page'>
 			<Header/>
@@ -61,7 +63,7 @@ const Info = props => {
 					<div className={Info_contant}>
 					{isError 
 						? <div className={error}>Oops! Something went wrong.</div>
-						: (isLoading && <Placeholder/>) || <InfoBody imageInfo={imageInfo} nameBackButton={props.nameBackButton}/>
+						: (isLoading && <Placeholder/>) || <InfoBody imageInfo={imageInfo} />
 					}
 					</div>
 				</BodyContainter>

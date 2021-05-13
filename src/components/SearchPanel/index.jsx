@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useRouteMatch} from 'react-router-dom';
 import { Formik } from 'formik';
 
@@ -58,4 +58,4 @@ const SearchPanel = () => {
 		</div>
 	)
 }
-export default SearchPanel;
+export default React.memo(SearchPanel);

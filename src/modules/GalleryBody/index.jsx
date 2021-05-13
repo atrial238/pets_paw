@@ -6,7 +6,7 @@ import { wrapper, back_button, preloader, error, no_items} from './GalleryBody.m
 import HeaderGallery from "./HeaderGallery/HeaderGallery";
 
 const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, updateSearch, 
-	changeLimit, state, handleImageInfo, handleCurrentBreedForGallery, handleOrderBreedForSearch}) => {
+	changeLimit, state, handleCurrentBreedForGallery, handleOrderBreedForSearch}) => {
 	const propsPaginator = {
 		handleChange: changeLimit,
 		selectValue: state.limit,
@@ -17,12 +17,11 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 		isLoading: state.isLoading,
 		items: state.items
 	}
-	const getImagePet = (imagePet, id, handleImageEvent, nameBreed, imageId, value, isGalleryPage) => {
+	const getImagePet = (imagePet, id, nameBreed, imageId, value, isGalleryPage) => {
 		return (
 			<ImagePet 
 				imageUrl={imagePet} 
-				id={id} 
-				handleImageEvent={handleImageEvent} 
+				id={id}
 				value={value}
 				nameBreed={nameBreed}
 				isImageOpenInNewPage={state.isImageOpenInNewPage}
@@ -34,8 +33,8 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
 			pet.breeds.length 
-				? pet.breeds && getImagePet(pet.url, pet.breeds[0].id, handleImageInfo, pet.breeds[0].name, pet.id, 3, true)
-				: pet.breeds && getImagePet(pet.url, 'unknown', handleImageInfo, 'unknown', pet.id, 3, true)
+				? pet.breeds && getImagePet(pet.url, pet.breeds[0].id, pet.breeds[0].name, pet.id, 3, true)
+				: pet.breeds && getImagePet(pet.url, 'unknown', 'unknown', pet.id, 3, true)
 		}</React.Fragment>
 	));
 
@@ -66,6 +65,7 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 	)
 }
 export default GalleryBody;
+
 GalleryBody.propsTypes = {
 	setSearchBreeds: PropTypes.func,
 	setNextPage: PropTypes.func,
