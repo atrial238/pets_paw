@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import {useReducer, useEffect} from 'react';
 import { imageAPI } from '../API/api';
 import placeholder from '../assets/images/uploadImagas/placeholder.png';
@@ -62,6 +63,8 @@ export const useBusinessLayerMyDogs = () => {
 
 	const [state, dispatch] = useReducer(reducer, initState)
 
+//fomat time using the data-fns library, this is need for success message when remove favourite
+	const getTime = () => format(new Date(), "k':'mm");
 	
 //initialize my favourites, likes or dislikes pet, handle error, set preloader
 	useEffect(() => {
@@ -113,7 +116,9 @@ export const useBusinessLayerMyDogs = () => {
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: false});
 					dispatch({type: 'SET_IMAGE_FOR_UPLOAD', body: ''});
-					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: true})
+					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: true});
+					setTimeout(() => dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false}), 5000);
+					dispatch({type: 'RESET_TEMPO_PATH_UPLOAD_PICTURE'});
 				}
 			})
 	}
@@ -139,7 +144,8 @@ export const useBusinessLayerMyDogs = () => {
 		handleModalWidow,
 		updateTempoPathImage,
 		saveUploadImage,
-		saveNameUploadImage
+		saveNameUploadImage,
+		getTime
 	
 	}
 }

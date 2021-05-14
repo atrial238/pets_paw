@@ -5,7 +5,7 @@ import {wrapper, back_button, header_my_dogs, no_items,
 	paginator, preloader, error, remove, active_remove, upload_button} from './MyDogsBody.module.scss';
 
 const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage,saveNameUploadImage,
-	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage}) => {
+	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage, getTime}) => {
 	
 
 	const propsPaginator = {
@@ -55,7 +55,9 @@ const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage,saveNam
 			{/* <div className={remove + ' ' + (state.removeSuccess && active_remove)}>
 				{state.removeSuccess && <ActionLog time={getTime()} content='was removed from Favourites' id={state.removedFavId}/>}
 			</div> */}
-		
+			<div className={remove + ' ' + (state.removeSuccess && active_remove)}>
+				{state.isUploadingSuccess && <ActionLog time={getTime()} content='was successfully uploaded' id={state.nameUploadImage}/>}
+			</div>
 			<UploadModal {...propsModalWindow}/>
 	</div>
 	)
