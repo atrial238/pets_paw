@@ -12,5 +12,6 @@ export {default as Placeholder} from './Placeholder';
 export {default as Paginator} from './Paginator';
 export {default as ImagePet} from './ImagePet';
 export {default as UploadModal} from './UploadModal';
+export {default as DropZone} from './DropZone';
 
 

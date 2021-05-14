@@ -1,5 +1,6 @@
 import {useReducer, useEffect} from 'react';
 import { imageAPI } from '../API/api';
+import placeholder from '../assets/images/uploadImagas/placeholder.png';
 
 export const useBusinessLayerMyDogs = () => {
 
@@ -13,7 +14,11 @@ export const useBusinessLayerMyDogs = () => {
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
 		removedPetId: '',
 		removeSuccess: false,
-		isUploadModalOpen: false
+		isUploadModalOpen: false,
+		tempoPathUploadPicture: placeholder,
+		imageForUpload: '',
+		nameUploadImage: 'no file selected',
+		isUploadingSuccess: false
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -40,7 +45,18 @@ export const useBusinessLayerMyDogs = () => {
 				return {...state, removedPetId: body};
 			case 'SET_IS_UPLOAD_MODAL_OPEN':
 				return {...state, isUploadModalOpen: body};
+			case 'SET_TEMPO_PATH_UPLOAD_PICTURE':
+				return {...state, tempoPathUploadPicture: body};
+			case 'RESET_TEMPO_PATH_UPLOAD_PICTURE':
+				return {...state, tempoPathUploadPicture: placeholder};
+			case 'SET_IMAGE_FOR_UPLOAD':
+				return {...state, imageForUpload: body};
+			case 'SET_NAME_UPLOAD_IMAGE':
+				return {...state, nameUploadImage: body};
+			case 'SET_IS_UPLOADING_SUCCESS':
+				return {...state, isUploadingSuccess: body};
 			default:
+				return state;
 		}
 	}
 
@@ -49,6 +65,7 @@ export const useBusinessLayerMyDogs = () => {
 	
 //initialize my favourites, likes or dislikes pet, handle error, set preloader
 	useEffect(() => {
+
 		const limit = +state.limit.match(/.{1,2}$/g)[0];
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false})
@@ -61,14 +78,14 @@ export const useBusinessLayerMyDogs = () => {
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: true});
 				}else{
-					console.log(res)
 					dispatch({type: 'SET_MY_PETS_IMAGES', body: res});
 					dispatch({type: 'SET_LAST_PAGE', body: false});
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: false});
 				}
 			})
-	}, [state.page, state.limit]);
+			console.log(state)
+	}, [state.page, state.limit, state.isUploadingSuccess]);
 
 //functions for manage pagination
 	const setNextPage = () => dispatch({type: 'NEXT_PAGE'});
@@ -82,10 +99,11 @@ export const useBusinessLayerMyDogs = () => {
 	const handleUploadImages = (file) => {
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false});
-		console.log(file)
+		dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false});
 		imageAPI.uploadImages(file)
 			.then(res =>{
 				if(res === 'error') {
+					console.log('error')
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: true})
 					dispatch({type: 'SET_UPLOAD_SUCCESS', body: false})
@@ -94,18 +112,34 @@ export const useBusinessLayerMyDogs = () => {
 					dispatch({type: 'SET_UPLOAD_SUCCESS', body: true})
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: false});
+					dispatch({type: 'SET_IMAGE_FOR_UPLOAD', body: ''});
+					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: true})
 				}
 			})
 	}
 //delete images
-	const handleModalWidow = (isOpen) => dispatch({type: 'SET_IS_UPLOAD_MODAL_OPEN', body: isOpen})
+
+//update path image which user select by drag and drop interface
+	const updateTempoPathImage = (path) => dispatch({type: 'SET_TEMPO_PATH_UPLOAD_PICTURE', body: path});
+
+//save image which user select in store
+	const saveUploadImage = (file) => dispatch({type: 'SET_IMAGE_FOR_UPLOAD', body: file});
+
+//save name of image which will be upload in store
+	const saveNameUploadImage = (name) => dispatch({type: 'SET_NAME_UPLOAD_IMAGE', body: name});
+
+//open and close modal window
+	const handleModalWidow = (isOpen) => dispatch({type: 'SET_IS_UPLOAD_MODAL_OPEN', body: isOpen});
 	return {
 		changeLimit,
 		state,
 		setNextPage,
 		setPreviousPage,
 		handleUploadImages,
-		handleModalWidow
+		handleModalWidow,
+		updateTempoPathImage,
+		saveUploadImage,
+		saveNameUploadImage
 	
 	}
 }

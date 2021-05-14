@@ -66,7 +66,6 @@ export const imageAPI = {
 			.catch(() => 'error');
 	},
 	getMyImages(limit, page){
-		console.log('get my images')
 		return instance.get('/images', {params: {limit, page}})
 		.then(res => res.status === 200 && res.data)
 		.catch(() => 'error');
@@ -75,7 +74,7 @@ export const imageAPI = {
 		const formData = new FormData();
 		formData.append('file', file);
 		return instance.post('/images/upload', formData, {params: {sub_id}}, {headers: {'Content-Type': 'multipart/form-data'}})
-			.then(res => res.status === 200 && res.data)
+			.then(res =>  (res.status === 200 || res.status === 201) && res.data)
 			.catch(() => 'error');
 	},
 	deleteMyImage(id){

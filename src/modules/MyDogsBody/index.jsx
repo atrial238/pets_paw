@@ -4,8 +4,10 @@ import { ActionLog, BackButton, GridItems,
 import {wrapper, back_button, header_my_dogs, no_items, 
 	paginator, preloader, error, remove, active_remove, upload_button} from './MyDogsBody.module.scss';
 
-const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage, setPreviousPage, handleModalWidow}) => {
+const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage,saveNameUploadImage,
+	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage}) => {
 	
+
 	const propsPaginator = {
 		handleChange: changeLimit,
 		selectValue: state.limit,
@@ -26,7 +28,19 @@ const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage, setPre
 			value={4}
 		/>
 	));
-
+//props for Modal Window
+	const propsModalWindow = {
+		saveNameUploadImage,
+		isOpen: state.isUploadModalOpen,
+		handleModalWidow,
+		saveUploadImage,
+		tempoPathUploadPicture: state.tempoPathUploadPicture,
+		updateTempoPathImage,
+		nameUploadImage: state.nameUploadImage,
+		isImageUpload: state.imageForUpload,
+		handleUploadImages,
+		imageForUpload: state.imageForUpload
+	}
 	return (
 		<div className={wrapper}>
 			<div className={header_my_dogs}>
@@ -41,15 +55,8 @@ const MyDogsBody = ({handleUploadImages, state, changeLimit, setNextPage, setPre
 			{/* <div className={remove + ' ' + (state.removeSuccess && active_remove)}>
 				{state.removeSuccess && <ActionLog time={getTime()} content='was removed from Favourites' id={state.removedFavId}/>}
 			</div> */}
-			
-
-			<input
-				style={{background: 'black', color: 'white'}}
-				type="file"
-				onChange={(e) => handleUploadImages(e.target.files[0])}
-			/>
 		
-			<UploadModal isOpen={state.isUploadModalOpen} handleModalWidow={handleModalWidow}/>
+			<UploadModal {...propsModalWindow}/>
 	</div>
 	)
 }
