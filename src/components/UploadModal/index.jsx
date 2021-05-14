@@ -4,7 +4,7 @@ import { Close } from '../Svg';
 import {header_text, wrapper_button, button, file_selected, upload_button} from './UploadModal.module.scss';
 
 const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture, isImageUpload, imageForUpload,
-	updateTempoPathImage, saveUploadImage, nameUploadImage, saveNameUploadImage, handleUploadImages}) => {
+	updateTempoPathImage, saveUploadImage, nameUploadImage, saveNameUploadImage, handleUploadDeleteImages}) => {
 
 	const styleForModal = {
 		content: {
@@ -30,7 +30,7 @@ const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture, isImageU
 
 	const handleUpoloadButton = (isOpen, imageUpload) => {
 		handleModalWidow(isOpen);
-		handleUploadImages(imageUpload)
+		handleUploadDeleteImages(imageUpload, true)
 	}
 	
 	return (

@@ -39,6 +39,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 			case 'SET_REMOVED_VOTE_ID':
 				return {...state, removedVoteId: body};
 			default:
+				return state;
 		}
 	}
 

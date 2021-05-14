@@ -79,7 +79,7 @@ export const imageAPI = {
 	},
 	deleteMyImage(id){
 		return instance.delete(`/images/${id}`)
-			.then(res => res.status === 200 && res.data)
+			.then(res => res)
 			.catch(() => 'error');
 	}
 } 

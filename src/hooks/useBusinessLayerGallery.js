@@ -62,6 +62,7 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 			case 'SET_BREEDS_NAME':
 				return {...state, breedsName: [{name: 'All breeds', id: null}, ...body.map(el => ({name: el.name, id: el.id}))]};
 			default:
+				return state;
 		}
 	}
 

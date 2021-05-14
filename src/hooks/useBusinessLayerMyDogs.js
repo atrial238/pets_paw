@@ -13,13 +13,14 @@ export const useBusinessLayerMyDogs = () => {
 		isLoading: false,
 		isError: false,
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
-		removedPetId: '',
-		removeSuccess: false,
 		isUploadModalOpen: false,
 		tempoPathUploadPicture: placeholder,
 		imageForUpload: '',
 		nameUploadImage: 'no file selected',
-		isUploadingSuccess: false
+		isUploadingSuccess: false,
+		isDeleteSuccess: false,
+		isUpdateMyPetsImage: false,
+		idDeletedImage: 'unknown'
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -40,10 +41,6 @@ export const useBusinessLayerMyDogs = () => {
 				return {...state, isLoading: body};
 			case 'SET_IS_ERROR':
 				return {...state, isError: body};
-			case 'SET_REMOVE_SUCCESS':
-				return {...state, removeSuccess: body};
-			case 'SET_REMOVED_PET_ID':
-				return {...state, removedPetId: body};
 			case 'SET_IS_UPLOAD_MODAL_OPEN':
 				return {...state, isUploadModalOpen: body};
 			case 'SET_TEMPO_PATH_UPLOAD_PICTURE':
@@ -56,6 +53,12 @@ export const useBusinessLayerMyDogs = () => {
 				return {...state, nameUploadImage: body};
 			case 'SET_IS_UPLOADING_SUCCESS':
 				return {...state, isUploadingSuccess: body};
+			case 'SET_IS_DELETE_SUCCESS':
+				return {...state, isDeleteSuccess: body};
+			case 'SET_IS_UPDATE_MY_IMAGES':
+				return {...state, isUpdateMyPetsImage: body};
+			case 'SET_ID_DELETED_IMAGE':
+				return {...state, idDeletedImage: body}
 			default:
 				return state;
 		}
@@ -63,7 +66,7 @@ export const useBusinessLayerMyDogs = () => {
 
 	const [state, dispatch] = useReducer(reducer, initState)
 
-//fomat time using the data-fns library, this is need for success message when remove favourite
+//fomat time using the data-fns library, this is need for success message when delete or upload favourite
 	const getTime = () => format(new Date(), "k':'mm");
 	
 //initialize my favourites, likes or dislikes pet, handle error, set preloader
@@ -87,8 +90,7 @@ export const useBusinessLayerMyDogs = () => {
 					dispatch({type: 'SET_IS_ERROR', body: false});
 				}
 			})
-			console.log(state)
-	}, [state.page, state.limit, state.isUploadingSuccess]);
+	}, [state.page, state.limit, state.isUpdateMyPetsImage]);
 
 //functions for manage pagination
 	const setNextPage = () => dispatch({type: 'NEXT_PAGE'});
@@ -98,31 +100,39 @@ export const useBusinessLayerMyDogs = () => {
 		dispatch({type: 'SET_LIMIT', body: event.target.value})
 	};
 	
-//upload images
-	const handleUploadImages = (file) => {
+//upload images or delete image
+	const handleUploadDeleteImages = (file, typeEvent) => {
+		//define what kind of method API should use
+		const methodAPI = typeEvent ? imageAPI.uploadImages : imageAPI.deleteMyImage;
+
 		dispatch({type: 'SET_IS_LOADING', body: true});
 		dispatch({type: 'SET_IS_ERROR', body: false});
 		dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false});
-		imageAPI.uploadImages(file)
+		dispatch({type: 'SET_IS_DELETE_SUCCESS', body: false});
+
+		methodAPI(file)
 			.then(res =>{
 				if(res === 'error') {
-					console.log('error')
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: true})
-					dispatch({type: 'SET_UPLOAD_SUCCESS', body: false})
+					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false});
 				}else{
 					console.log(res)
-					dispatch({type: 'SET_UPLOAD_SUCCESS', body: true})
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: false});
-					dispatch({type: 'SET_IMAGE_FOR_UPLOAD', body: ''});
-					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: true});
-					setTimeout(() => dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false}), 5000);
-					dispatch({type: 'RESET_TEMPO_PATH_UPLOAD_PICTURE'});
+					dispatch({type: 'SET_IS_UPDATE_MY_IMAGES', body: !state.isUpdateMyPetsImage});
+					if(typeEvent){
+						dispatch({type: 'RESET_TEMPO_PATH_UPLOAD_PICTURE'});
+						dispatch({type: 'SET_IMAGE_FOR_UPLOAD', body: ''});
+						dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: true});
+						setTimeout(() => dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false}), 5000);
+					}else{
+						dispatch({type: 'SET_IS_DELETE_SUCCESS', body: true});
+						setTimeout(() => dispatch({type: 'SET_IS_DELETE_SUCCESS', body: false}), 5000);
+					}
 				}
 			})
 	}
-//delete images
 
 //update path image which user select by drag and drop interface
 	const updateTempoPathImage = (path) => dispatch({type: 'SET_TEMPO_PATH_UPLOAD_PICTURE', body: path});
@@ -135,18 +145,18 @@ export const useBusinessLayerMyDogs = () => {
 
 //open and close modal window
 	const handleModalWidow = (isOpen) => dispatch({type: 'SET_IS_UPLOAD_MODAL_OPEN', body: isOpen});
+
 	return {
 		changeLimit,
 		state,
 		setNextPage,
 		setPreviousPage,
-		handleUploadImages,
+		handleUploadDeleteImages,
 		handleModalWidow,
 		updateTempoPathImage,
 		saveUploadImage,
 		saveNameUploadImage,
 		getTime
-	
 	}
 }
 export default useBusinessLayerMyDogs;
