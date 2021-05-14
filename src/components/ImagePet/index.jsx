@@ -13,12 +13,14 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			iconSvg = <Dislikes/>;
 			text= 'Dislikes'
 			targetValue = id;
+			prefix = 'Remove from';
 			break;
 		case 1:
 			icon = icon_green;
 			iconSvg = <Likes/>;
 			text = 'Likes'
 			targetValue = id;
+			prefix = 'Remove from';
 			break;
 		case 2:
 			icon = icon_none;
@@ -44,7 +46,7 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			prefix = 'Remove from';
 			targetValue = id;
 	};
-
+console.log(prefix)
 	return (
 		<div  className={wrapper}>
 			<img src={imageUrl} alt="pet" />

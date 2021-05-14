@@ -2,7 +2,7 @@ import {useReducer, useEffect} from 'react';
 import {format} from 'date-fns';
 import { imageAPI } from '../API/api';
 
-export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, dislikes = false) => {
+export const useBusinessLayerMyVoting = (getPetAPI, removePetAPI, likes = false, dislikes = false) => {
 
 	const initState = {
 		page: 0,
@@ -12,8 +12,9 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 		isLoading: false,
 		isError: false,
 		removeSuccess: false,
-		removedVoteId: '',
+		removedVoteId: '', 
 		items: ['Limit: 5', 'Limit: 10', 'Limit: 15', 'Limit: 20'],
+		isShouldUpdate: false,
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -38,6 +39,8 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 				return {...state, removeSuccess: body};
 			case 'SET_REMOVED_VOTE_ID':
 				return {...state, removedVoteId: body};
+			case 'SET_IS_SHOULD_UPDATE':
+				return {...state, isShouldUpdate: body};
 			default:
 				return state;
 		}
@@ -45,7 +48,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 
 	const [state, dispatch] = useReducer(reducer, initState)
 
-//fomat time using the data-fns library, this is need for success message when remove favourite
+//format time using the data-fns library, this is need for success message when remove favourite
 	const getTime = () => format(new Date(), "k':'mm");
 
 // helper function to avoid dublicate code
@@ -95,7 +98,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 					}
 				}
 			})
-	}, [state.limit, state.page, getPetAPI, likes, dislikes]);
+	}, [state.limit, state.page, getPetAPI, likes, dislikes, state.isShouldUpdate]);
 
 //functions for manage pagination
 	const setNextPage = () => dispatch({type: 'NEXT_PAGE'});
@@ -118,26 +121,7 @@ export const useLogicHandleMyVoting = (getPetAPI, removePetAPI, likes = false, d
 					dispatch({type: 'SET_REMOVE_SUCCESS', body: true});
 					dispatch({type: 'SET_REMOVED_VOTE_ID', body: id})
 					setTimeout(() => dispatch({type: 'SET_REMOVE_SUCCESS', body: false}), 5000);
-					const limit = +state.limit.match(/.{1,2}$/g)[0];
-					getPetAPI(limit, state.page)
-						.then(res => {
-							if(res.length === 0){
-								dispatch({type: 'SET_LAST_PAGE', body: true});
-								dispatch({type: 'SET_IS_LOADING', body: false});
-							}else if(res === 'error'){
-								dispatch({type: 'SET_IS_LOADING', body: false});
-								dispatch({type: 'SET_IS_ERROR', body: true})
-							}else{
-								if(likes || dislikes){
-									getVotingPetImages(res)
-								}else{
-									dispatch({type: 'SET_VOTE_PETS', body: res});
-									dispatch({type: 'SET_LAST_PAGE', body: false});
-									dispatch({type: 'SET_IS_LOADING', body: false});
-									dispatch({type: 'SET_IS_ERROR', body: false});
-								}
-							}
-						})
+					dispatch({type: 'SET_IS_SHOULD_UPDATE', body: !state.isShouldUpdate});
 				}
 			})
 	}

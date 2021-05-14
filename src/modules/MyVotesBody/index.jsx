@@ -5,7 +5,7 @@ import { ActionLog, BackButton, GridItems,
 import {wrapper, back_button, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
-const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime, typeVote}) => {
+const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime}) => {
 
 	const propsPaginator = {
 		handleChange: changeLimit,
@@ -30,14 +30,19 @@ const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleIm
 
 	return (
 		<div className={wrapper}>
+
+			{/* header */}
 			<div className={header_favorites}>
-				<div className={back_button}><BackButton name={typeVote}/></div>
 				<div className={paginator}><Paginator {...propsPaginator}/></div>
 			</div>
+
+			{/* main content */}
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No item found</div>)
 				|| <GridItems items={petsImage} />}
+			
+			{/* show message when image was removed from famourites, likes, dislikes */}
 			<div className={remove + ' ' + (state.removeSuccess && active_remove)}>
 				{state.removeSuccess && <ActionLog time={getTime()} content='was removed from Favourites' id={state.removedFavId}/>}
 			</div>
@@ -52,7 +57,6 @@ MyVotesBody.propTypes = {
 	setPreviousPage: PropTypes.func,
 	handleImageEvent: PropTypes.func,
 	getTime: PropTypes.func,
-	typeVote: PropTypes.string,
 	state: {
 		page: PropTypes.number,
 		favouritesPet: PropTypes.array,

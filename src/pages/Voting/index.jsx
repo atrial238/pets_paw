@@ -2,7 +2,7 @@ import {useReducer, useEffect} from 'react';
 import format from 'date-fns/format';
 
 import { votingAPI, favouritesAPI, imageAPI} from '../../API/api';
-import { BodyContainter, SearchPanel } from "../../components";
+import { BodyContainter, NavPanel } from "../../components";
 import { Header, VotingBody } from "../../modules";
 import { initState, reducer } from './reducer';
 import {wrapper} from './Voting.module.scss';
@@ -84,9 +84,9 @@ const Voting = () => {
 
 	return (
 		<div className='wrapper_page'>
-			<Header/>
+			<Header />
 			<div className={wrapper}>
-				<SearchPanel/>
+				<NavPanel nameBackButton='voting'/>
 				<BodyContainter>
 					<VotingBody state={state} addVote={addVote} addFavourite={addFavourite}/>
 				</BodyContainter>

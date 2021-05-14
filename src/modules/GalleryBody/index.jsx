@@ -52,11 +52,10 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 	return (
 		<div className={wrapper}>
 			<div className={back_button}>
-				<BackButton name='gallery'/> 
 				<Paginator {...propsPaginator}/>
-			 </div>
+			</div>
 			 <HeaderGallery propsSelectBeeds={propsSelectBeeds}/>
-			 {(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
+			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No items found</div>)
 				|| <GridItems items={petsImage} />

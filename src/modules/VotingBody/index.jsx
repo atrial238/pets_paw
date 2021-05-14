@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { ActionLog, BackButton, Placeholder } from "../../components";
-import {img_voting_dog, wrapper, voting, likes, favourites, dislikes, active, error, action_log, back_button} from './VotinBody.module.scss';
+import { ActionLog, Placeholder } from "../../components";
+import {img_voting_dog, wrapper, voting, likes, favourites, dislikes, active, error, action_log} from './VotinBody.module.scss';
 import { Dislikes, Favourites, Likes } from "../../components/Svg";
 
 
@@ -34,7 +34,7 @@ const VotingBody = ({state, addVote, addFavourite}) => {
 
 	return (
 		<div className={wrapper}>
-			<div className={back_button}><BackButton name='voting'/></div>
+			
 			<div className={img_voting_dog + ' ' + (isError && error)}>
 			{(isError && 'Oops! Something went wrong') || (isLoading && <Placeholder size='80'/>) || <img src={state.randomPet.url} alt='voting dog'/> }
 				<div className={voting}>

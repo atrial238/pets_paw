@@ -50,7 +50,6 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 
 			{/* Header */}
 			<div className={header_my_dogs}>
-				<div className={back_button}><BackButton name='My pets'/></div>
 				<div className={paginator}><Paginator {...propsPaginator}/></div>
 				<div className={upload_button} onClick={() => {handleModalWidow(true)}}> <UploadButton/></div>
 			</div>

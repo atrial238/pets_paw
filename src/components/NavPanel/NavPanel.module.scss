@@ -1,5 +1,7 @@
 .wrapper {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 10px;
 	.button {
 		flex: 0 0 30%;

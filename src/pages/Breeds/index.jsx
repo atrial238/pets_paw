@@ -1,19 +1,20 @@
 import React from 'react';
 import { breedsAPI, imageAPI } from "../../API/api";
-import { BodyContainter, SearchPanel } from "../../components";
+import { BodyContainter, NavPanel } from "../../components";
 import { useBusinessLayerGallery } from "../../hooks/useBusinessLayerGallery";
 import { BreedsBody, Header } from "../../modules";
 import {wrapper} from './Breeds.module.scss';
 
 const Breeds = () => { 
 
+	//return state and all nesesery function needed for manage that state
 	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed);
 	
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div className={wrapper}>
-				<SearchPanel/>
+				<NavPanel nameBackButton='breeds'/>
 				<BodyContainter>
 					<BreedsBody {...propsBreedsBody} />
 				</BodyContainter>

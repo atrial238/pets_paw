@@ -1,21 +1,21 @@
-import { BodyContainter, SearchPanel } from "../../components";
+import { BodyContainter, NavPanel } from "../../components";
 import { MyVotesBody, Header } from "../../modules";
 import {wrapper} from './Favourites.mosule.scss';
 import {favouritesAPI} from '../../API/api';
-import { useLogicHandleMyVoting } from '../../hooks/useLogicHandleMyVoting';
+import { useBusinessLayerMyVoting } from '../../hooks/useBusinessLayerMyVoting';
 
 
 const Favourites = () => {
 	
-	const propsFavoritesBody = useLogicHandleMyVoting(favouritesAPI.getMyFavourites, favouritesAPI.removeFavourite)
+	const propsFavoritesBody = useBusinessLayerMyVoting(favouritesAPI.getMyFavourites, favouritesAPI.removeFavourite)
 	
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div className={wrapper}>
-				<SearchPanel/>
+				<NavPanel nameBackButton='favourite'/>
 				<BodyContainter>
-					<MyVotesBody {...propsFavoritesBody} typeVote='Favourite'/>
+					<MyVotesBody {...propsFavoritesBody}/>
 				</BodyContainter>
 			</div>
 		</div>

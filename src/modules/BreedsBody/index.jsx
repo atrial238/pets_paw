@@ -48,7 +48,6 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 	return (
 		<div className={wrapper}>
 			<div className={header_breeds}>
-				<div className={back_button}><BackButton name='breeds'/></div>
 				<div><Select {...propsSelect} ></Select></div>
 				<div><Paginator {...propsPaginator}/></div>
 			</div> 

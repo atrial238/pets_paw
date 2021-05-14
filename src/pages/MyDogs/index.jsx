@@ -1,4 +1,4 @@
-import { BodyContainter, SearchPanel } from "../../components";
+import { BodyContainter, NavPanel } from "../../components";
 import { useBusinessLayerMyDogs } from "../../hooks/useBusinessLayerMyDogs";
 import { Header, MyDogsBody } from "../../modules";
 
@@ -10,7 +10,7 @@ const MyDogs = () => {
 		<div className='wrapper_page'>
 			<Header/>
 			<div>
-				<SearchPanel/>
+				<NavPanel nameBackButton='my dogs'/>
 				<BodyContainter>
 					<MyDogsBody {...propsMyDogsBody}/>
 				</BodyContainter>

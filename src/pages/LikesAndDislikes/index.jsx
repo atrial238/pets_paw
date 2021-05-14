@@ -1,17 +1,17 @@
-import { BodyContainter, SearchPanel } from "../../components";
+import { BodyContainter, NavPanel } from "../../components";
 import { MyVotesBody, Header } from "../../modules";
 import {votingAPI} from '../../API/api';
-import { useLogicHandleMyVoting } from '../../hooks/useLogicHandleMyVoting';
+import { useBusinessLayerMyVoting } from '../../hooks/useBusinessLayerMyVoting';
 
 const LikesAndDislikes = () => {
 	
-	const propsFavoritesBody = useLogicHandleMyVoting(votingAPI.getMyVotes, votingAPI.removeVote, true)
+	const propsFavoritesBody = useBusinessLayerMyVoting(votingAPI.getMyVotes, votingAPI.removeVote, true)
 	
 	return (
 		<div className='wrapper_page'>
 			<Header/>
 			<div>
-				<SearchPanel/>
+				<NavPanel nameBackButton='likes and dislikes'/>
 				<BodyContainter>
 					<MyVotesBody {...propsFavoritesBody} typeVote='Likes and Dislikes'/>
 				</BodyContainter>

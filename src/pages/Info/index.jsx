@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { imageAPI } from "../../API/api";
-import { BodyContainter, Placeholder, SearchPanel } from "../../components";
+import { BodyContainter, Placeholder, NavPanel } from "../../components";
 import {  Header, InfoBody } from "../../modules";
 import {error, Info_contant} from './Info.module.scss';
 
 export const templateImageInfo = {
+
 	breeds:[
 		{
 			bred_for: 'unknown',
@@ -23,8 +24,9 @@ export const templateImageInfo = {
 }
 
 const Info = () => { 
-
+	//define image id from url 
 	const {imageId} = useParams();
+
 	const [imageInfo, setImageInfo] = useState();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
@@ -58,7 +60,7 @@ const Info = () => {
 		<div className='wrapper_page'>
 			<Header/>
 			<div>
-				<SearchPanel/>
+				<NavPanel nameBackButton='info'/>
 				<BodyContainter>
 					<div className={Info_contant}>
 					{isError 
