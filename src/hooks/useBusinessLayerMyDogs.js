@@ -20,7 +20,8 @@ export const useBusinessLayerMyDogs = () => {
 		isUploadingSuccess: false,
 		isDeleteSuccess: false,
 		isUpdateMyPetsImage: false,
-		idDeletedImage: 'unknown'
+		idDeletedImage: 'unknown',
+		isUploadingImageWrong: false
 	}
 
 	const reducer = (state = initState, {type, body}) =>  {
@@ -58,7 +59,9 @@ export const useBusinessLayerMyDogs = () => {
 			case 'SET_IS_UPDATE_MY_IMAGES':
 				return {...state, isUpdateMyPetsImage: body};
 			case 'SET_ID_DELETED_IMAGE':
-				return {...state, idDeletedImage: body}
+				return {...state, idDeletedImage: body};
+			case 'SET_IS_UPLOADING_IMAGE_WRONG': 
+				return {...state, isUploadingImageWrong: body};
 			default:
 				return state;
 		}
@@ -143,6 +146,9 @@ export const useBusinessLayerMyDogs = () => {
 //save name of image which will be upload in store
 	const saveNameUploadImage = (name) => dispatch({type: 'SET_NAME_UPLOAD_IMAGE', body: name});
 
+//set is uploading image has wrong extension
+	const setIsImageWrong = (body) => dispatch({type: 'SET_IS_UPLOADING_IMAGE_WRONG', body});
+
 //open and close modal window
 	const handleModalWidow = (isOpen) => dispatch({type: 'SET_IS_UPLOAD_MODAL_OPEN', body: isOpen});
 
@@ -156,7 +162,8 @@ export const useBusinessLayerMyDogs = () => {
 		updateTempoPathImage,
 		saveUploadImage,
 		saveNameUploadImage,
-		getTime
+		getTime,
+		setIsImageWrong
 	}
 }
 export default useBusinessLayerMyDogs;

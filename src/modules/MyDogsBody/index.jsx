@@ -5,7 +5,7 @@ import {wrapper, back_button, header_my_dogs, no_items,
 	paginator, preloader, error, remove, active_remove, upload_button} from './MyDogsBody.module.scss';
 
 const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,saveNameUploadImage,
-	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage, getTime}) => {
+	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage, getTime, setIsImageWrong}) => {
 	
 	
 //create array with components which will be displeid every image
@@ -42,7 +42,9 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 		nameUploadImage: state.nameUploadImage,
 		isImageUpload: state.imageForUpload,
 		handleUploadDeleteImages,
-		imageForUpload: state.imageForUpload
+		imageForUpload: state.imageForUpload,
+		setIsImageWrong,
+		isUploadingImageWrong: state.isUploadingImageWrong
 	}
 
 	return (
