@@ -1,6 +1,13 @@
+@import '../../styles/mixins.scss';
+
 .wrapper{
 	background: #FFFFFF;
 	border-radius: 20px;
-	padding: 20px;
 	height: calc(100% - 70px);
+	@include adaptiv-property('padding-top', 40, 10);
+	@include adaptiv-property('padding-left', 40, 10);
+	@include adaptiv-property('padding-bottom', 40, 10);
+	@include adaptiv-property('padding-right', 40, 10);
+
+
 }

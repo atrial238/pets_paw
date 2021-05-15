@@ -1,106 +1,85 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 10px;
-	.button {
-		flex: 0 0 30%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 60px;
-		background: #FFFFFF;
-		border-radius: 20px;
-		transition: all .4s;
-			svg {
-				fill: #FF868E;
-				transition:  all .4s;
-			}
-			&:hover {
-				background: #FBE0DC;
-			}
-			&.favourites {
-				svg {
-					fill: none;
-					stroke: #FF868E;
-				}
-				&:hover {
-					background: #FBE0DC;
-				}
-			}
-			&.likes_dislikes {
+		.back_button {
+			// flex: 0 1 50%;
+			
+		}
+		.links_wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			// flex: 0 1 30%;
+			.button {
+				@include adaptiv-property('padding-left', 5, 2);
+				@include adaptiv-property('padding-right', 5, 2);
+				display: flex;
 				justify-content: center;
-				padding: 0 7px;
-				svg{
-					&:first-child {
-						margin-right: 5px;
-					}
-				}
-			}
-			&.active {
-				background: #FF868E;
-				cursor: auto;
-				svg {
-					fill: white;
-					transition:  all .4s;
-				}
-				&:hover {
-					background: #FF868E;
-				}
-				&.favourites {
-					svg {
-						fill: none;
-						stroke: white;
-					}
-				}
-			}
-	}
-	.form {
-		display: flex;
-		align-items: center;
-		flex: 1 1 auto;
-		margin-right: 10px;
-		background: #FFFFFF;
-		border-radius: 20px;
-		padding: 10px 10px 10px 20px;
-			input {
-				flex: 1 1 auto;
-				color: #8C8C8C;
-				font-size: 20px;
-				line-height: 20px;
+				align-items: center;
+				background: #FFFFFF;
+				transition: all .4s;
 				margin-right: 10px;
-				
-			}
-			button {
-				border-radius: 10px;
-				flex: 0 1 40px;
-				background: #FBE0DC;
-				// width: 40px;
-				height: 40px;
-				&:hover {
-					background: #FF868E;
-					svg {
-						fill: white;
+				@include adaptiv-property('width', 60, 30);
+				@include adaptiv-property('height', 60, 30);
+				@include adaptiv-property('border-radius', 20, 5);
+					&:last-child {
+						margin-right: 0;
 					}
-				}
+					svg {
+						width: 80%;
+						height: 80%;
+						fill: #FF868E;
+						transition:  all .4s;
+					}
+					&:hover {
+						background: #FBE0DC;
+					}
+					&.favourites {
+						svg {
+							fill: none;
+							stroke: #FF868E;
+						}
+						&:hover {
+							background: #FBE0DC;
+						}
+					}
+					&.likes_dislikes {
+						justify-content: center;
+						@include adaptiv-property('width', 80, 40);
+						svg{
+							&:first-child {
+								margin-right: 5px;
+							}
+						}
+					}
+					&.my_dog {
+						svg {
+							width: 100%;
+							height: 100%;
+						}
+					}
+					&.active {
+						background: #FF868E;
+						cursor: auto;
+						svg {
+							fill: white;
+							transition:  all .4s;
+						}
+						&:hover {
+							background: #FF868E;
+						}
+						&.favourites {
+							svg {
+								fill: none;
+								stroke: white;
+							}
+						}
+					}
 			}
-			&:hover {
-				box-shadow: 0 0 0 2px #FBE0DC;
-			}
-			&:focus-within {
-				box-shadow: 0 0 0 2px #FF868E;
-			}
-	}
-	.links_wrapper {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		flex: 0 0 260px;
-			a {
-				margin-right: 10px;
-				&:last-child {
-					margin-right: 0;
-				}
-			}
-	}
+			
+		}
 }

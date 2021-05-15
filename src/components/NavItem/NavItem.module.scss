@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper{
 		display: block;
 	.container {
@@ -6,10 +8,11 @@
 		align-items: center;
 		border: 4px solid rgba(255, 255, 255, 0.6);
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 20px;
 		width: 100%;
 		margin-bottom: 10px;
 		transition: all .3s;
+		@include adaptiv-property('border-radius', 20, 7);
+
 		&_purple {
 			background: #B4B7FF;
 		}
@@ -37,16 +40,19 @@
 		font-family: Jost;
 		width: 100%;
 		background: #FFFFFF;
-		border-radius: 10px;
 		text-align: center;
 		letter-spacing: 2px;
 		color: #FF868E;
 		font-weight: 500;
-		font-size: 12px;
-		line-height: 16px;
 		text-transform: uppercase;
-		padding: 10px 0;
 		transition: all .3s;
+		@include adaptiv-property('border-radius', 10, 3);
+		@include adaptiv-property('font-size', 16, 10);
+		@include adaptiv-property('line-height', 16, 12);
+		@include adaptiv-property('padding-left', 10, 3);
+		@include adaptiv-property('padding-right', 10, 3);
+		@include adaptiv-property('padding-top', 10, 3);
+		@include adaptiv-property('padding-bottom', 10, 3);
 	}
 	&:hover {
 		.button {

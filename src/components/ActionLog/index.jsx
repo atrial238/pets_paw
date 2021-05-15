@@ -29,7 +29,7 @@ const ActionLog = ({time, id, typeEvent, content='was added to'}) => {
 		<div className={wrapper}>
 			<div className={wrapper_text}>
 				<div className={time_style}>{time}</div>
-				<div className={text}>Image ID: <span>{id}</span> {content} {typeEvent}</div>
+				<div className={text}><div>Image ID: <span>{id}</span> {content} {typeEvent}</div></div>
 			</div>
 			<div className={icon_style}>{Icon}</div>
 		</div>

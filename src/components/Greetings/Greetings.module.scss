@@ -1,14 +1,12 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	h1{
 		font-weight: 500;
-		font-size: 44px;
-		line-height: 58px;
 		color: #1D1D1D;
-		margin-bottom: 10px;
-	}
-	p {
-		font-size: 20px;
-		line-height: 29px;
-		color: #8C8C8C;
+		@include adaptiv-property('font-size', 34, 16);
+		@include adaptiv-property('line-height', 48, 20);
+
+
 	}
 }

@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -5,21 +7,17 @@
 	width: 100%;
 	.header_breeds {
 		display: flex;
-		margin-bottom: 20px;
-		flex: 0 0 40px;
-		.back_button {
-			margin-right: 10px;
-			// flex: 0 0 200px;
-		}
+		@include adaptiv-property('margin-bottom', 15, 5);
 		&_id {
-			border-radius: 10px;
 			background: #FF868E;
 			color: #FFFFFF;
 			letter-spacing: 2px;
 			font-weight: 500;
-			font-size: 20px;
-			line-height: 30px;
-			padding: 5px 30px;
+			@include adaptiv-property('font-size', 25, 16);
+			@include adaptiv-property('line-height', 40, 20);
+			@include adaptiv-property('padding-left', 30, 10);
+			@include adaptiv-property('padding-right', 30, 10);
+			@include adaptiv-property('border-radius', 10, 5);
 		}
 	}
 	.info_contant {
@@ -32,6 +30,7 @@
 			border-radius: 20px;
 			border: 2px solid #FBE0DC;
 			margin-bottom: 50px;
+			@include adaptiv-property('margin-bottom', 50, 20);
 			.image_container {
 				position: absolute;
 				top: 50%;
@@ -50,7 +49,10 @@
 		.info {
 			border: 2px solid #FBE0DC;
 			border-radius: 20px;
-			padding: 25px 40px 30px 40px;
+			@include adaptiv-property('padding-left', 40, 10);
+			@include adaptiv-property('padding-right', 40, 15);
+			@include adaptiv-property('padding-top', 25, 10);
+			@include adaptiv-property('padding-right', 30, 10);
 			position: relative;
 				h2 {
 					position: absolute;
@@ -59,12 +61,13 @@
 					transform: translate(-50%, -50%);
 					color: #1D1D1D;
 					font-weight: 500;
-					font-size: 36px;
 					line-height: 52px;
 					width: 100%;
 					display: flex;
 					justify-content: center;
 					align-items: center;
+					@include adaptiv-property('font-size', 36, 20);
+					@include adaptiv-property('line-height', 52, 20);
 					span{
 						background: white;
 						position: relative;
@@ -72,10 +75,9 @@
 							content: '';
 							position: absolute;
 							display: block;
-							width: 40px;
+							@include adaptiv-property('width', 40, 10);
 							height: 100%;
 							top: 0;
-							
 							background: white;
 						}
 						&:after {
@@ -91,29 +93,36 @@
 				.breed_for {
 					color: #8C8C8C;
 					font-weight: 500;
-					font-size: 20px;
 					line-height: 29px;
-					margin-bottom: 20px;
 					text-align: center;
+					@include adaptiv-property('font-size', 20, 16);
+					@include adaptiv-property('margin-bottom', 20, 10);
+					@include adaptiv-property('line-height', 30, 20);
 				}
 				.info_body {
 					display: flex;
 					justify-content: space-between;
+					@media(max-width: 1024px){
+						flex-direction: column;
+					}
 					> div {
 						flex: 0 1 45%;
 					}
 					p {
 						color: #8C8C8C;
-						font-size: 16px;
-						line-height: 23px;
+						@include adaptiv-property('font-size', 16, 14);
+						@include adaptiv-property('line-height', 23, 15);
 					}
 					.info_temperament {
 						h3 {
 							color: #1D1D1D;
 							font-weight: 500;
-							font-size: 16px;
-							line-height: 23px;
 							margin-bottom: 5px;
+							@include adaptiv-property('font-size', 16, 14);
+							@include adaptiv-property('line-height', 23, 15);
+						}
+						@media(max-width: 1024px){
+							margin-bottom: 15px;
 						}
 					}
 					.info_params {
@@ -122,8 +131,8 @@
 							span {
 								color: #1D1D1D;
 								font-weight: 500;
-								font-size: 16px;
-								line-height: 23px;
+								@include adaptiv-property('font-size', 16, 14);
+								@include adaptiv-property('line-height', 23, 15);
 							}
 						}
 					}

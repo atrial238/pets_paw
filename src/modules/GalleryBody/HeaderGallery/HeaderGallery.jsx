@@ -41,7 +41,7 @@ const HeaderGallery = ({propsSelectBeeds}) => {
 			<div className={select + ' ' + select_update} onClick={updateSearch}>
 				<label htmlFor="limit"></label>
 				<div className={wrapper_select_update}>
-					<div >update</div>
+					<div>update</div>
 					<button><MainActionButton/></button>
 				</div>
 			</div>

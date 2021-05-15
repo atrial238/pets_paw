@@ -1,7 +1,10 @@
+@import '../../styles/mixins.scss';
+
 .link {
 	display: block;
-	width: 106px;
-	height: 24px;
+	
+	@include adaptiv-property('width', 106, 53);
+	@include adaptiv-property('height', 24, 12);
 	img {
 		width: 100%;
 		height: 100%;

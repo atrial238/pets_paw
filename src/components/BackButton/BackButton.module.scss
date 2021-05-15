@@ -1,10 +1,14 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	display: flex;
+	align-items: center;
 	.back_button {
-		width: 40px;
-		height: 40px;
+		@include adaptiv-property('width', 40, 20);
+		@include adaptiv-property('height', 40, 20);
+		@include adaptiv-property('border-radius', 10, 3);
 		background: #FBE0DC;
-		border-radius: 10px;
+		
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -12,6 +16,8 @@
 		transition: all .4s;
 		cursor: pointer;
 			svg {
+				width: 70%;
+				height: 70%;
 				fill: #FF868E;
 				transition: all .4s;
 			}
@@ -27,14 +33,19 @@
 		justify-content: center;
 		align-items: center;
 		background: #FF868E;
-		border-radius: 10px;
 		font-weight: 500;
-		font-size: 20px;
+		@include adaptiv-property('font-size', 25, 16);
 		line-height: 30px;
 		text-align: center;
 		letter-spacing: 2px;
 		text-transform: uppercase;
 		color: white;
-		padding: 0 30px;
+		@include adaptiv-property('padding-left', 30, 10);
+		@include adaptiv-property('padding-right', 30, 10);
+		@include adaptiv-property('height', 40, 20);
+		@include adaptiv-property('border-radius', 10, 3);
+
+
+
 	}
 }

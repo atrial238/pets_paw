@@ -1,16 +1,19 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	.navigation {
 		display: flex;
 		justify-content: space-between;
-		width: 81%;
+		width: 85%;
 		> * {
 			flex: 0 1 31%;
 		}
 	}
 	.logo{
-		margin-bottom: 80px;
+		@include adaptiv-property('margin-bottom', 90, 20);
+
 	}
 	.greetings {
-		margin-bottom: 110px;
+		@include adaptiv-property('margin-bottom', 50, 30);
 	}
 }

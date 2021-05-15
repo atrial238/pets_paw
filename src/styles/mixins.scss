@@ -1,0 +1,4 @@
+@mixin adaptiv-property($property, $pcSize, $mobSize) {
+	$addSize: $pcSize - $mobSize;
+	#{$property}:  calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / 1120))
+}

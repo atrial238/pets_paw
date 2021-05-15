@@ -1,11 +1,14 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	.back_button {
-		flex: 0 0 40px;
-	}
+	overflow-y: auto;
+
 	.img_voting_dog{
+		border: 2px solid #FBE0DC;
+		border-radius: 20px;
 		margin-top: 20px;
 		height: 360px;
 		width: 100%;
@@ -15,11 +18,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 10px;
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
-			border-radius: 20px;
+			
 		}
 		.voting {
 			display: flex;
@@ -27,12 +31,12 @@
 			align-items: center;
 			background: #FFFFFF;
 			border: 4px solid #FFFFFF;
-			border-radius: 22px;
-			width: 256px;
+			// width: 256px;
 			position: absolute;
 			left: 50%;
 			bottom: 0;
 			transform: translate(-50%, 50%);
+			@include adaptiv-property('border-radius', 23, 5);
 			button {
 				width: 80px;
 				height: 80px;
@@ -40,14 +44,22 @@
 				justify-content: center;
 				align-items: center;
 				transition: all .4s;
+				margin-right: 4px;
+				@include adaptiv-property('width', 80, 40);
+				@include adaptiv-property('height', 80, 40);
+
 					svg {
 						fill: white;
 						transition: all .4s;
 					}
+					&:last-child {
+						margin-right: 0px;
+					}
 			}
 			.likes {
 				background: #97EAB9;
-				border-radius: 20px 0px 0px 20px;
+				@include adaptiv-property(' border-top-left-radius', 20, 5);
+				@include adaptiv-property(' border-bottom-left-radius', 20, 5);
 					&:hover {
 						background: rgba(151, 234, 185, 0.3);
 						svg {
@@ -85,7 +97,8 @@
 			}
 			.dislikes {
 				background: #FFD280;
-				border-radius: 0px 20px 20px 0px;
+				@include adaptiv-property(' border-top-right-radius', 20, 5);
+				@include adaptiv-property(' border-bottom-right-radius', 20, 5);
 					&:hover {
 						background: rgba(255, 210, 128, 0.3);
 						svg {
@@ -100,7 +113,13 @@
 	}
 	.action_log {
 		flex: 1 1 auto;
-		overflow-y: auto;
 		list-style-type: none;
+		padding: 5px;
+		 li {
+			margin-bottom: 10px;
+				&:last-child {
+					margin-bottom: 0px;
+				}
+		 }
 	}
 }
