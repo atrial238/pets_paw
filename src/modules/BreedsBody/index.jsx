@@ -1,21 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {  BackButton, GridItems, ImagePet, Paginator, Placeholder, Select} from "../../components";
-import { wrapper, back_button, header_breeds,preloader, no_items, error} from './Breeds.module.scss';
+import { GridItems, ImagePet, Paginator, Placeholder, Select} from "../../components";
+import { wrapper, header_breeds,preloader, no_items, error} from './Breeds.module.scss';
 
 const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit, state}) => {
 	
-	const propsPaginator = {
-			handleChange: changeLimit,
-			selectValue: state.limit,
-			setNextPage,
-			setPreviousPage,
-			page: state.page,
-			isLastPage: state.isLastPage,
-			isLoading: state.isLoading,
-			items: state.items
-	}
-
+	
+	//helper function to avoid duplicate code when creating petsImage
 	const getImagePet = (imagePet, id, handleImageEvent, nameBreed, imageId, value) => {
 		return (
 			<ImagePet 
@@ -29,15 +20,17 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 			/>
 		)
 	}
+
+	//create an array with components needed for displaying every image
 	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
-				state.isSearchByBreed && pet.breeds 
-					? getImagePet(pet.url, pet.breeds[0].id, null, pet.breeds[0].name, pet.id, 3)
-					: !state.isSearchByBreed && pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name, null, 2)
+			state.isSearchByBreed && pet.breeds 
+				? getImagePet(pet.url, pet.breeds[0].id, null, pet.breeds[0].name, pet.id, 3)
+				: pet.image && getImagePet(pet.image.url, pet.id, setSearchBreeds, pet.name, null, 2)
 		}</React.Fragment>
 	));
 
-//props for Select 
+	//props for Select limit items per page
 	const propsSelect = {
 		background:'dark',
 		items: state.breedsName.map(el => el.name) ,
@@ -45,12 +38,28 @@ const BreedsBody = ({setSearchBreeds, setNextPage, setPreviousPage, changeLimit,
 		handleChange: setSearchBreeds
 	}
 
+	//props for Paginator
+	const propsPaginator = {
+		handleChange: changeLimit,
+		selectValue: state.limit,
+		setNextPage,
+		setPreviousPage,
+		page: state.page,
+		isLastPage: state.isLastPage,
+		isLoading: state.isLoading,
+		items: state.items
+	}
+
 	return (
 		<div className={wrapper}>
+
+			{/* header */}
 			<div className={header_breeds}>
 				<div><Select {...propsSelect} ></Select></div>
 				<div><Paginator {...propsPaginator}/></div>
 			</div> 
+
+			{/* displaying images or error message or preloader*/}
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No items found</div>)

@@ -3,7 +3,8 @@ import { useBusinessLayerMyDogs } from "../../hooks/useBusinessLayerMyDogs";
 import { Header, MyDogsBody } from "../../modules";
 
 const MyDogs = () => {
-	
+
+	//return state and all necessary function needed to manage that state 
 	const propsMyDogsBody = useBusinessLayerMyDogs();
 	
 	return (

@@ -5,6 +5,7 @@ import { wrapper, header_breeds, image_wrapper, info_params, info_contant,
 
 const InfoBody = ({imageInfo = templateImageInfo}) => {
 	
+	//destructuring object imageInfo
 	const { 
 		breeds:[
 			{
@@ -23,13 +24,19 @@ const InfoBody = ({imageInfo = templateImageInfo}) => {
 	
 	return (
 		<div className={wrapper}>
+
+			{/* header */}
 			<div className={header_breeds}>
 				<div className={header_breeds_id}>Breed id {breedId}</div>
 			</div> 
+
+			{/* main content */}
 			<div className={info_contant}>
+				{/* displaing image */}
 				<div className={image_wrapper}>
 					<div className={image_container}><img src={url} alt="some pet" /></div>
 				</div>
+				{/* displaing info about breed */}
 				<div className={info}>
 					<h2><span>{name}</span></h2>
 					<div className={breed_for}>{breedFor}</div>

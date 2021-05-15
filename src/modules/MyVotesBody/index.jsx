@@ -7,6 +7,18 @@ import {wrapper, back_button, header_favorites, no_items,
 
 const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime}) => {
 
+	//create an array with components which will be displayed  every image
+	const petsImage = state.favouritesPet.map(pet => (
+		<ImagePet 
+			imageUrl={pet.image.url} 
+			key={pet.image.id} 
+			id={pet.id} 
+			handleImageEvent={handleImageEvent} 
+			value={pet.value}
+		/>
+	));
+
+	//props for paginator
 	const propsPaginator = {
 		handleChange: changeLimit,
 		selectValue: state.limit,
@@ -18,16 +30,6 @@ const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleIm
 		items: state.items
 	};
 
-	const petsImage = state.favouritesPet.map(pet => (
-		<ImagePet 
-			imageUrl={pet.image.url} 
-			key={pet.image.id} 
-			id={pet.id} 
-			handleImageEvent={handleImageEvent} 
-			value={pet.value}
-		/>
-	));
-
 	return (
 		<div className={wrapper}>
 
@@ -36,7 +38,7 @@ const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleIm
 				<div className={paginator}><Paginator {...propsPaginator}/></div>
 			</div>
 
-			{/* main content */}
+			{/* displaying images or error message or preloader */}
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No item found</div>)
@@ -49,6 +51,7 @@ const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleIm
 	</div>
 	)
 }
+
 export default MyVotesBody;
 
 MyVotesBody.propTypes = {

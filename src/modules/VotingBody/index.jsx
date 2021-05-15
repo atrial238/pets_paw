@@ -12,7 +12,8 @@ const VotingBody = ({state, addVote, addFavourite}) => {
 	let elementActionLog;
 
 	if(recentActionLog){
-		elementActionLog  = recentActionLog.map(el => <li key={el.id}><ActionLog time={el.time} id={el.id} typeEvent={el.typeEvent} /></li>);
+		elementActionLog  = recentActionLog.map(el =>
+			 <li key={el.id}><ActionLog time={el.time} id={el.id} typeEvent={el.typeEvent} /></li>);
 	}
 
 //props for buttons

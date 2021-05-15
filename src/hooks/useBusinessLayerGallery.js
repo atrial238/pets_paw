@@ -1,4 +1,5 @@
 import {useReducer, useEffect} from 'react';
+import { useHistory } from 'react-router';
 
 export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGalleryPage = false) => {
 
@@ -178,8 +179,6 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 		dispatch({type: 'SET_UPDATE_SEARCH'});
 		dispatch({type: 'SET_LAST_PAGE', body: false});
 		dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: true})
-
-
 	}
 	const handleCurrentBreedForGallery = (event) => {
 		dispatch({type: 'SET_CURRENT_PAGE_FOR_GALLERY', body: event.target.value})

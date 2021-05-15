@@ -1,22 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import { BackButton, GridItems, ImagePet, Paginator, Placeholder } from "../../components"
+import { GridItems, ImagePet, Paginator, Placeholder } from "../../components"
 import { wrapper, back_button, preloader, error, no_items} from './GalleryBody.module.scss';
 import HeaderGallery from "./HeaderGallery/HeaderGallery";
 
 const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, updateSearch, 
 	changeLimit, state, handleCurrentBreedForGallery, handleOrderBreedForSearch}) => {
-	const propsPaginator = {
-		handleChange: changeLimit,
-		selectValue: state.limit,
-		setNextPage,
-		setPreviousPage,
-		page: state.page,
-		isLastPage: state.isLastPage,
-		isLoading: state.isLoading,
-		items: state.items
-	}
+	
+	//helper function to avoid duplicate code when creating petsImage
 	const getImagePet = (imagePet, id, nameBreed, imageId, value, isGalleryPage) => {
 		return (
 			<ImagePet 
@@ -30,6 +22,8 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 			/>
 		)
 	}
+
+	//create an array with components needed for displaying every image
 	const petsImage = state.petImages.map((pet, index) => (
 		<React.Fragment key={index}>{
 			pet.breeds.length 
@@ -38,7 +32,7 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 		}</React.Fragment>
 	));
 
-//props for Select 
+	//props for Select breeds
 	const propsSelectBeeds = {
 		items: state.breedsName.map(el => el.name),
 		selectValueBreeds: state.currentBreedForGallery,
@@ -49,17 +43,35 @@ const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, up
 		handleTypeBreedForSearch: handleTypeBreedForSearch,
 		updateSearch:updateSearch
 	}
+
+	//props for Paginator
+	const propsPaginator = {
+		handleChange: changeLimit,
+		selectValue: state.limit,
+		setNextPage,
+		setPreviousPage,
+		page: state.page,
+		isLastPage: state.isLastPage,
+		isLoading: state.isLoading,
+		items: state.items
+	}
+
 	return (
 		<div className={wrapper}>
-			<div className={back_button}>
-				<Paginator {...propsPaginator}/>
-			</div>
-			 <HeaderGallery propsSelectBeeds={propsSelectBeeds}/>
+
+			{/* paginator */}
+			<div className={back_button}><Paginator {...propsPaginator}/></div>
+
+			{/* Control Panel */}
+			<HeaderGallery propsSelectBeeds={propsSelectBeeds}/>
+
+			{/* displaying images or error message or preloader*/}
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No items found</div>)
 				|| <GridItems items={petsImage} />
 			}
+
 		</div>
 	)
 }

@@ -4,7 +4,8 @@ import {votingAPI} from '../../API/api';
 import { useBusinessLayerMyVoting } from '../../hooks/useBusinessLayerMyVoting';
 
 const LikesAndDislikes = () => {
-	
+
+	//return state and all necessary function needed to manage that state 
 	const propsFavoritesBody = useBusinessLayerMyVoting(votingAPI.getMyVotes, votingAPI.removeVote, true)
 	
 	return (

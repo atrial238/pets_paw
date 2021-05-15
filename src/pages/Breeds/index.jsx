@@ -7,7 +7,7 @@ import {wrapper} from './Breeds.module.scss';
 
 const Breeds = () => { 
 
-	//return state and all nesesery function needed for manage that state
+	//return state and all necessary function needed to manage that state 
 	const propsBreedsBody = useBusinessLayerGallery(breedsAPI.getBreeds, imageAPI.getImageByBreed);
 	
 	return (

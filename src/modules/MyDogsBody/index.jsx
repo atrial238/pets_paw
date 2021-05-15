@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
-import { ActionLog, BackButton, GridItems,
+import { ActionLog, GridItems,
 	 ImagePet, Paginator, Placeholder, UploadButton, UploadModal } from '../../components';
-import {wrapper, back_button, header_my_dogs, no_items, 
+import {wrapper, header_my_dogs, no_items, 
 	paginator, preloader, error, remove, active_remove, upload_button} from './MyDogsBody.module.scss';
 
 const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,saveNameUploadImage,
 	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage, getTime, setIsImageWrong}) => {
 	
 	
-//create array with components which will be displeid every image
+//create an array with components which will be displayed  every image
 	const petsImage = state.myPetsImages.map(pet => (
 		<ImagePet
 			imageUrl={pet.url} 
@@ -56,7 +56,7 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 				<div className={upload_button} onClick={() => {handleModalWidow(true)}}> <UploadButton/></div>
 			</div>
 
-			{/* Main content */}
+			{/* displaying images or error message or preloader */}
 			{(state.isLoading && <div className={preloader}><Placeholder/></div> ) 
 				|| (state.isError && <div className={error}>Ooops! Something went wrong</div>) 
 				|| (state.isLastPage && <div className={no_items}>No item found</div>)
