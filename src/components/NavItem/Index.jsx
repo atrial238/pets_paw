@@ -21,6 +21,7 @@ const NavItem = ({imgSrc, name, pageLink, backgroundColor}) => {
 			styleBackground = ''
 	}
 
+	let some = 'some';
 	const insidesNavItem = (
 		<>
 			<div className={container + ' ' + styleBackground}>
