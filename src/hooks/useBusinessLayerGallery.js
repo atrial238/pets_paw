@@ -138,13 +138,25 @@ export const useBusinessLayerGallery = (getPetsImages, getPetImagesByBreed, isGa
 
 	//  get list names of all breeds for dropdown select only one time
 	useEffect(() => {
-		setPetImages(getPetsImages, true);
-		dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: isGalleryPage})
+		let isMounted = true;
+
+		if(isMounted){
+			setPetImages(getPetsImages, true);
+			dispatch({type: 'SET_IS_IMAGE_OPEN_IN_NEW_PAGE', body: isGalleryPage})
+		}
+		
+		return () => {isMounted = false};
 	}, []);
 
 	// manage next page, previous page, current breed. Depends what change
 	useEffect(() => {
-		state.isSearchByBreed || isGalleryPage ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
+		let isMounted = true;
+		
+		if(isMounted){
+			state.isSearchByBreed || isGalleryPage ? setPetImages(getPetImagesByBreed) : setPetImages(getPetsImages);
+		}
+		return () => {isMounted = false};
+
 	}, [state.limit, state.page, state.currentBreed, state.updateSearch]);
 
 	//functions for manage pagination

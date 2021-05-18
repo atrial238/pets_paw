@@ -81,7 +81,7 @@ export default MyDogsBody;
 
 MyDogsBody.propTypes= {
 	handleUploadOrDeleteImages: PropTypes.func,
-	state: {
+	state: PropTypes.shape({
 		page: PropTypes.number,
 		myPetsImages: PropTypes.array,
 		limit: PropTypes.string,
@@ -91,13 +91,13 @@ MyDogsBody.propTypes= {
 		items: PropTypes.array,
 		isUploadModalOpen: PropTypes.bool,
 		tempoPathUploadPicture: PropTypes.string,
-		imageForUpload: PropTypes.file,
+		imageForUpload: PropTypes.string,
 		nameUploadImage: PropTypes.string,
-		isUploadingSuccess: PropTypes.bol,
-		isDeleteSuccess: PropTypes.bol,
-		isUpdateMyPetsImage: PropTypes.bol,
+		isUploadingSuccess: PropTypes.bool,
+		isDeleteSuccess: PropTypes.bool,
+		isUpdateMyPetsImage: PropTypes.bool,
 		idDeletedImage: PropTypes.string
-	},
+	}),
 	changeLimit: PropTypes.func,
 	setNextPag: PropTypes.func,
 	saveNameUploadImag: PropTypes.func,

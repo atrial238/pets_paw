@@ -12,8 +12,8 @@ const Header = ({isMobileMenuOpen, setIsMobileMenuOpen, isHome}) => {
 	return (
 		<div className={wrapper + ' ' + (isMobileMenuOpen && mobile_menu) + ' ' + (isHome && home_page)}>
 			<div className={logo + ' ' + (isMobileMenuOpen && mobile_menu)}>
-				{  <Logo/>}
-				{ <BurgerMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>}
+				<Logo/>
+				{!isHome && <BurgerMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>}
 			</div>
 			{<div className={greetings}><Greetings/></div>}
 			<nav className={navigation + ' ' + (isMobileMenuOpen && mobile_menu)}>

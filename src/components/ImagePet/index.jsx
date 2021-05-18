@@ -68,7 +68,7 @@ export default ImagePet;
 ImagePet.propTypes = {
 	imageUrl: PropTypes.string,
 	handleImageEvent: PropTypes.func,
-	id: PropTypes.number,
+	id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	typeVote: PropTypes.string,
 	isImageOpenInNewPage: PropTypes.bool,
 	nameBreed: PropTypes.string,

@@ -75,7 +75,7 @@ BreedsBody.propsTypes = {
 	setNextPage: PropTypes.func,
 	setPreviousPage: PropTypes.func,
 	changeLimit: PropTypes.func,
-	state: {
+	state: PropTypes.shape({
 		page: PropTypes.string,
 		petImages: PropTypes.array,
 		limit: PropTypes.string,
@@ -86,5 +86,5 @@ BreedsBody.propsTypes = {
 		breedsName: PropTypes.array,
 		currentBreed: PropTypes.string,
 		items: PropTypes.array,
-	}
+	})
 }

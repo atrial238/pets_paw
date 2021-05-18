@@ -12,8 +12,8 @@ const VotingBody = ({state, addVote, addFavourite}) => {
 	let elementActionLog;
 
 	if(recentActionLog){
-		elementActionLog  = recentActionLog.map(el =>
-			 <li key={el.id}><ActionLog time={el.time} id={el.id} typeEvent={el.typeEvent} /></li>);
+		elementActionLog  = recentActionLog.map((el, i) =>
+			 <li key={i}><ActionLog time={el.time} id={el.id} typeEvent={el.typeEvent} /></li>);
 	}
 
 //props for buttons
@@ -51,14 +51,14 @@ const VotingBody = ({state, addVote, addFavourite}) => {
 export default VotingBody;
 
 VotingBody.propTypes = {
-	state: {
+	state: PropTypes.shape({
 		randomPet: PropTypes.object,
 		isLoading: PropTypes.bool,
 		isfavourit:  PropTypes.bool,
 		isFavouritLoading: PropTypes.bool,
 		recentActionLog: PropTypes.array,
 		isError: PropTypes.bool
-	},
+	}),
 	addVote: PropTypes.func,
 	addFavourite: PropTypes.func
 }

@@ -35,9 +35,6 @@
 		@include adaptiv-property('margin-bottom', 90, 20);
 		display: flex;
 		justify-content: space-between;
-		&.mobile_menu {
-		
-		}
 	}
 	.greetings {
 		@include adaptiv-property('margin-bottom', 50, 30);

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { ActionLog, GridItems,
 	 ImagePet, Paginator, Placeholder } from '../../components';
-	 
+
 import {wrapper, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
@@ -61,7 +61,7 @@ MyVotesBody.propTypes = {
 	setPreviousPage: PropTypes.func,
 	handleImageEvent: PropTypes.func,
 	getTime: PropTypes.func,
-	state: {
+	state: PropTypes.shape({
 		page: PropTypes.number,
 		favouritesPet: PropTypes.array,
 		limit: PropTypes.string,
@@ -71,5 +71,5 @@ MyVotesBody.propTypes = {
 		removeSuccess: PropTypes.bool,
 		removedFavId: PropTypes.string,
 		items: PropTypes.array
-	}
+	})
 }
