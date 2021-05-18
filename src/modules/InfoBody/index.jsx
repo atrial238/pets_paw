@@ -18,7 +18,6 @@ const InfoBody = ({imageInfo = templateImageInfo}) => {
 				weight: {metric: weight},
 			}
 		],
-		id: imageId,
 		url
 	} = imageInfo;
 	

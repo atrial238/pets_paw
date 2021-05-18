@@ -1,4 +1,4 @@
-import {useReducer, useEffect, useState} from 'react';
+import {useReducer, useEffect} from 'react';
 import format from 'date-fns/format';
 
 import { votingAPI, favouritesAPI, imageAPI} from '../../API/api';

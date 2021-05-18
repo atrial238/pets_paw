@@ -1,5 +1,3 @@
-
-import { Header } from '../../modules';
 import {burger_menu, active} from './BurgerMenu.module.scss';
 
 const BurgerMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen, isBurgerMenuInNavPanel}) => {

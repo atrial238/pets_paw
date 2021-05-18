@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { ActionLog, BackButton, GridItems,
+import { ActionLog, GridItems,
 	 ImagePet, Paginator, Placeholder } from '../../components';
-import {wrapper, back_button, header_favorites, no_items, 
+	 
+import {wrapper, header_favorites, no_items, 
 	paginator, preloader, error, remove, active_remove} from './VoteBody.module.scss';
 
 const MyVotesBody = ({state, changeLimit, setNextPage, setPreviousPage, handleImageEvent, getTime}) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BurgerMenu, Greetings, Logo, NavItem } from '../../components';
 import {wrapper, navigation, logo, greetings, mobile_menu, home_page} from './Header.module.scss';
 

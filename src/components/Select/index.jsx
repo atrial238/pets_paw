@@ -1,4 +1,3 @@
-import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
 import {select_light, select_dark} from './Select.module.scss';
