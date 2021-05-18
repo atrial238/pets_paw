@@ -46,7 +46,7 @@ const ImagePet = ({imageUrl, handleImageEvent, id,  nameBreed, isImageOpenInNewP
 			prefix = 'Remove from';
 			targetValue = id;
 	};
-console.log(prefix)
+
 	return (
 		<div  className={wrapper}>
 			<img src={imageUrl} alt="pet" />

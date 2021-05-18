@@ -120,7 +120,6 @@ export const useBusinessLayerMyDogs = () => {
 					dispatch({type: 'SET_IS_ERROR', body: true})
 					dispatch({type: 'SET_IS_UPLOADING_SUCCESS', body: false});
 				}else{
-					console.log(res)
 					dispatch({type: 'SET_IS_LOADING', body: false});
 					dispatch({type: 'SET_IS_ERROR', body: false});
 					dispatch({type: 'SET_IS_UPDATE_MY_IMAGES', body: !state.isUpdateMyPetsImage});
