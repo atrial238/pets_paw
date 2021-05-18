@@ -13,5 +13,6 @@ export {default as Paginator} from './Paginator';
 export {default as ImagePet} from './ImagePet';
 export {default as UploadModal} from './UploadModal';
 export {default as DropZone} from './DropZone';
+export {default as BurgerMenu} from './BurgerMenu';
 
 

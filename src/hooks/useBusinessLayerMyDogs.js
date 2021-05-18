@@ -104,7 +104,7 @@ export const useBusinessLayerMyDogs = () => {
 	};
 	
 //upload images or delete image
-	const handleUploadDeleteImages = (file, typeEvent) => {
+	const handleUploadOrDeleteImages = (file, typeEvent) => {
 		//define what kind of method API should use
 		const methodAPI = typeEvent ? imageAPI.uploadImages : imageAPI.deleteMyImage;
 
@@ -157,7 +157,7 @@ export const useBusinessLayerMyDogs = () => {
 		state,
 		setNextPage,
 		setPreviousPage,
-		handleUploadDeleteImages,
+		handleUploadOrDeleteImages,
 		handleModalWidow,
 		updateTempoPathImage,
 		saveUploadImage,

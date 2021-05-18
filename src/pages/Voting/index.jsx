@@ -1,4 +1,4 @@
-import {useReducer, useEffect} from 'react';
+import {useReducer, useEffect, useState} from 'react';
 import format from 'date-fns/format';
 
 import { votingAPI, favouritesAPI, imageAPI} from '../../API/api';
@@ -6,11 +6,14 @@ import { BodyContainter, NavPanel } from "../../components";
 import { Header, VotingBody } from "../../modules";
 import { initState, reducer } from './reducer';
 import {wrapper} from './Voting.module.scss';
-
+import useMobileMenu from '../../hooks/useMobileMenuOpen';
 
 const Voting = () => {
 
 	 const [state, dispatch] = useReducer(reducer, initState);
+	 
+	//return isMobileMenuOpen and setMobileMenuOpen
+	const propsForMangeMobielMenu = useMobileMenu();
 
 // initialize first pet image
 	useEffect(()=> {
@@ -81,14 +84,13 @@ const Voting = () => {
 				}
 			})
 	}
-
 	return (
 		<div className='wrapper_page'>
-			<Header />
+			<Header {...propsForMangeMobielMenu}/>
 			<div className={wrapper}>
-				<NavPanel nameBackButton='voting'/>
+				<NavPanel nameBackButton='voting' propsForMangeMobielMenu={propsForMangeMobielMenu}/>
 				<BodyContainter>
-					<VotingBody state={state} addVote={addVote} addFavourite={addFavourite}/>
+					<VotingBody state={state} addVote={addVote} addFavourite={addFavourite} />
 				</BodyContainter>
 			</div>
 		</div>

@@ -4,11 +4,10 @@
 	display: flex;
 	align-items: center;
 	.back_button {
-		@include adaptiv-property('width', 40, 20);
-		@include adaptiv-property('height', 40, 20);
+		@include adaptiv-property('width', 40, 30);
+		@include adaptiv-property('height', 40, 30);
 		@include adaptiv-property('border-radius', 10, 3);
 		background: #FBE0DC;
-		
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -34,7 +33,7 @@
 		align-items: center;
 		background: #FF868E;
 		font-weight: 500;
-		@include adaptiv-property('font-size', 25, 16);
+		@include adaptiv-property('font-size', 25, 12);
 		line-height: 30px;
 		text-align: center;
 		letter-spacing: 2px;
@@ -42,7 +41,7 @@
 		color: white;
 		@include adaptiv-property('padding-left', 30, 10);
 		@include adaptiv-property('padding-right', 30, 10);
-		@include adaptiv-property('height', 40, 20);
+		@include adaptiv-property('height', 40, 30);
 		@include adaptiv-property('border-radius', 10, 3);
 
 

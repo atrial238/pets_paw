@@ -4,7 +4,7 @@ import { ActionLog, GridItems,
 import {wrapper, header_my_dogs, no_items, 
 	paginator, preloader, error, remove, active_remove, upload_button} from './MyDogsBody.module.scss';
 
-const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,saveNameUploadImage,
+const MyDogsBody = ({handleUploadOrDeleteImages, state, changeLimit, setNextPage,saveNameUploadImage,
 	 setPreviousPage, handleModalWidow, updateTempoPathImage, saveUploadImage, getTime, setIsImageWrong}) => {
 	
 	
@@ -14,7 +14,7 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 			imageUrl={pet.url} 
 			key={pet.id} 
 			id={pet.id} 
-			handleImageEvent={handleUploadDeleteImages} 
+			handleImageEvent={handleUploadOrDeleteImages} 
 			value={4}
 		/>
 	));
@@ -41,7 +41,7 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 		updateTempoPathImage,
 		nameUploadImage: state.nameUploadImage,
 		isImageUpload: state.imageForUpload,
-		handleUploadDeleteImages,
+		handleUploadOrDeleteImages,
 		imageForUpload: state.imageForUpload,
 		setIsImageWrong,
 		isUploadingImageWrong: state.isUploadingImageWrong
@@ -80,7 +80,7 @@ const MyDogsBody = ({handleUploadDeleteImages, state, changeLimit, setNextPage,s
 export default MyDogsBody;
 
 MyDogsBody.propTypes= {
-	handleUploadDeleteImages: PropTypes.func,
+	handleUploadOrDeleteImages: PropTypes.func,
 	state: {
 		page: PropTypes.number,
 		myPetsImages: PropTypes.array,

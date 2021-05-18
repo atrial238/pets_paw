@@ -7,7 +7,7 @@ const BackButton = ({name}) => {
 	const history = useHistory();
 	return (
 		<div className={wrapper}>
-			<div onClick={() => history.goBack()}  className={back_button}><Back/></div>
+			<div onClick={() => history.goBack()} className={back_button}><Back/></div>
 			<div className={title}>{name}</div>
 		</div>  
 	)

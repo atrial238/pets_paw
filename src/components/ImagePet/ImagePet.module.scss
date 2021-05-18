@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	position: relative;
 	border-radius: 20px;
@@ -19,7 +21,7 @@
 		justify-content: center;
 		align-items: center;
 		background: rgba(255, 134, 142, .6);
-		border-radius: 20px;
+		@include adaptiv-property('border-radius', 20, 7);
 		opacity: 0;
 			button {
 				cursor: pointer;

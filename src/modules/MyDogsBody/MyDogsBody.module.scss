@@ -8,14 +8,29 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 20px;
+		@media(max-width: 500px){
+			flex-direction: column;
+		}
 		.back_button {
 			
 		}
 		.paginator{
-
+			@media(max-width: 500px){
+				margin-bottom: 20px;
+			}
 		}
 		.upload_button{
 			height: 100%;
+			@media(max-width: 500px){
+				width: 100%;
+				display: flex;
+				justify-content: flex-end;
+					button {
+						padding: 7px 30px;
+						width: 100%;
+						justify-content: center;
+					}
+			}
 		}
 	}
 	.preloader {

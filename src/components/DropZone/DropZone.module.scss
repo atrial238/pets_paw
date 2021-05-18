@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
 	background: #FFFFFF;
 	border: 2px dashed #FBE0DC;
@@ -31,17 +33,18 @@
 			height: 100%;
 			transform: translate(-50%, -50%);
 			color: #8C8C8C;
-			font-size: 20px;
 			line-height: 30px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			@include adaptiv-property('font-size', 20, 14);
 				span {
 					font-weight: 500;
 					font-size: 20px;
 					line-height: 30px;
 					color: #1D1D1D;
 					margin: 0 5px;
+					@include adaptiv-property('font-size', 20, 14);
 				}
 		}
 		&.wrong_image {

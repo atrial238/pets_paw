@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import { DropZone, UploadButton } from '..';
 import { Close } from '../Svg';
@@ -6,21 +7,31 @@ import {header_text, wrapper_button, button, file_selected, upload_button, wrong
 const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture, 
 	isImageUpload, imageForUpload, setIsImageWrong, isUploadingImageWrong,
 	updateTempoPathImage, saveUploadImage, nameUploadImage, 
-	saveNameUploadImage, handleUploadDeleteImages}) => {
+	saveNameUploadImage, handleUploadOrDeleteImages}) => {
+
+	const [isMobileView, setIsMobileView] = useState(window.matchMedia('(max-width: 992px)').matches);
+
+	const updateWidth = () => setIsMobileView(window.matchMedia('(max-width: 992px)').matches);
+
+	useEffect(() => {
+		window.addEventListener('resize', updateWidth);
+		return () => window.removeEventListener('resize', updateWidth);
+	})
+	
 
 	const styleForModal = {
 		content: {
 			inset: '0px 0px 0px auto',
-			width: '50%',
-			margin: '20px',
-			borderRadius: '20px',
+			width: isMobileView ? '100%' : '50%',
+			margin: isMobileView ? '0px' : '20px',
+			borderRadius: isMobileView ? '0px' : '20px',
 			background: '#F8F8F7',
 		},
 		overlay: {
 			background: 'rgba(29, 29, 29, 0.6)'
 		}
-		
 	}
+
 //props for DropZone 
 	const propsDropzone = {
 		tempoPathUploadPicture, 
@@ -34,7 +45,7 @@ const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture,
 
 	const handleUpoloadButton = (isOpen, imageUpload) => {
 		handleModalWidow(isOpen);
-		handleUploadDeleteImages(imageUpload, true)
+		handleUploadOrDeleteImages(imageUpload, true)
 	}
 	
 	return (

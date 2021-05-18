@@ -1,15 +1,42 @@
-.right_hand_side{
+@import '../../styles/mixins.scss';
+
+.wrapper_page {
+	display: flex;
+	justify-content: space-between;
 	height: 100%;
-	background: #FBE0DC;
-	border-radius: 20px;
-	position: relative;
-		img {
-			position: absolute;
-			height: 107%;
-			width: 113%;
-			right: -30px;
-			top: 50%;
-			transform: translateY(-50%);
-			object-fit: cover;
+	width: 100%;
+	
+	> div{
+		&:first-child {
+			flex: 0 1 45%;
+			margin-right: 10px;
+			@media(max-width: 992px){
+				flex: 0 1 100%;
+				margin-right: 0px;
+			}
 		}
+		&:last-child {
+			flex: 0 1 55%;
+			@media(max-width: 992px){
+				display: none;
+			}
+		}
+	}
+	.right_hand_side{
+		height: 100%;
+		background: #FBE0DC;
+		border-radius: 20px;
+		position: relative;
+			img {
+				position: absolute;
+				height: 107%;
+				width: 113%;
+				@include adaptiv-property('right', -30, -10);
+				top: 50%;
+				transform: translateY(-50%);
+				object-fit: cover;
+			}
+			
+			
+	}
 }

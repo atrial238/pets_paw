@@ -3,11 +3,12 @@ import { useParams } from "react-router";
 
 import { imageAPI } from "../../API/api";
 import { BodyContainter, Placeholder, NavPanel } from "../../components";
+import useMobileMenu from "../../hooks/useMobileMenuOpen";
 import {  Header, InfoBody } from "../../modules";
 import {error, Info_contant} from './Info.module.scss';
 
 export const templateImageInfo = {
-
+	
 	breeds:[
 		{
 			bred_for: 'unknown',
@@ -30,7 +31,10 @@ const Info = () => {
 	const [imageInfo, setImageInfo] = useState();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
-	
+
+	//return isMobileMenuOpen and setMobileMenuOpen
+	const propsForMangeMobielMenu = useMobileMenu();
+
 	useEffect(() => {
 		setIsLoading(true);
 		setIsError(false);
@@ -58,9 +62,9 @@ const Info = () => {
 	
 	return (
 		<div className='wrapper_page'>
-			<Header/>
+			<Header {...propsForMangeMobielMenu}/>
 			<div>
-				<NavPanel nameBackButton='info'/>
+				<NavPanel nameBackButton='info' propsForMangeMobielMenu={propsForMangeMobielMenu}/>
 				<BodyContainter>
 					<div className={Info_contant}>
 					{isError 
