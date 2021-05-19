@@ -6,7 +6,6 @@ const BodyContainter = ({children}) => {
 	//needed to add margin-top only on mobile resolution 
 	const heightNavPanel = useHeightNavPanel();
 
-	console.log(heightNavPanel)
 	return <div className={wrapper} style={{marginTop: `${heightNavPanel}px`}}>{children}</div>
 };
 
