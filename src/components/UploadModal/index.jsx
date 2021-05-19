@@ -23,7 +23,7 @@ const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture,
 
 	const styleForModal = {
 		content: {
-			inset: isMobileView ? `${heightNavPanel}px 0px 0px auto` : '0px 0px 0px auto',
+			inset: isMobileView ? `${heightNavPanel -10}px 0px 0px auto` : '0px 0px 0px auto',
 			width: isMobileView ? '100%' : '50%',
 			margin: isMobileView ? '0px' : '20px',
 			borderRadius: isMobileView ? '0px' : '20px',
