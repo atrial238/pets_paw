@@ -14,8 +14,10 @@ const Breeds = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 	
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
+	
 	return (
-		<div className='wrapper_page'>
+		<div className={'wrapper_page' + ' ' + (isMobileMenuOpen && 'freeze')}>
 			<Header {...propsForMangeMobielMenu}/>
 			<div className={wrapper}>
 				<NavPanel nameBackButton='breeds' propsForMangeMobielMenu={propsForMangeMobielMenu}/>

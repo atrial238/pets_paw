@@ -15,6 +15,8 @@ const Voting = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
+
 // initialize first pet image
 	useEffect(()=> {
 		dispatch({type: 'LOADING', body: true});
@@ -85,7 +87,7 @@ const Voting = () => {
 			})
 	}
 	return (
-		<div className='wrapper_page'>
+		<div className={'wrapper_page' + ' ' + (isMobileMenuOpen && 'freeze')}>
 			<Header {...propsForMangeMobielMenu}/>
 			<div className={wrapper}>
 				<NavPanel nameBackButton='voting' propsForMangeMobielMenu={propsForMangeMobielMenu}/>

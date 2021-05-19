@@ -11,8 +11,12 @@ const MyDogs = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
+
+	const {state: {isUploadModalOpen}} = propsMyDogsBody;
+
 	return (
-		<div className='wrapper_page'>
+		<div className={'wrapper_page' + ' ' + ((isMobileMenuOpen && 'freeze') || (isUploadModalOpen && 'freeze'))}>
 			<Header {...propsForMangeMobielMenu}/>
 			<div>
 				<NavPanel nameBackButton='my dogs' propsForMangeMobielMenu={propsForMangeMobielMenu}/>

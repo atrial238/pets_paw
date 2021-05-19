@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import { DropZone, UploadButton } from '..';
+import useHeightNavPanel from '../../hooks/useHeightNavPanel';
 import { Close } from '../Svg';
 import {header_text, wrapper_button, button, file_selected, upload_button, wrong_image} from './UploadModal.module.scss';
 
@@ -18,10 +19,11 @@ const UploadModal = ({isOpen, handleModalWidow, tempoPathUploadPicture,
 		return () => window.removeEventListener('resize', updateWidth);
 	})
 	
+	const heightNavPanel = useHeightNavPanel();
 
 	const styleForModal = {
 		content: {
-			inset: '0px 0px 0px auto',
+			inset: isMobileView ? `${heightNavPanel}px 0px 0px auto` : '0px 0px 0px auto',
 			width: isMobileView ? '100%' : '50%',
 			margin: isMobileView ? '0px' : '20px',
 			borderRadius: isMobileView ? '0px' : '20px',

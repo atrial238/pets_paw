@@ -12,8 +12,9 @@ const LikesAndDislikes = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
 	return (
-		<div className='wrapper_page'>
+		<div className={'wrapper_page' + ' ' + (isMobileMenuOpen && 'freeze')}>
 			<Header {...propsForMangeMobielMenu}/>
 			<div>
 				<NavPanel nameBackButton='Votes' propsForMangeMobielMenu={propsForMangeMobielMenu}/>

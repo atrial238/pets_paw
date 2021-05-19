@@ -35,6 +35,8 @@ const Info = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
+
 	useEffect(() => {
 		setIsLoading(true);
 		setIsError(false);
@@ -61,7 +63,7 @@ const Info = () => {
 	}, []);
 	
 	return (
-		<div className='wrapper_page'>
+		<div className={'wrapper_page' + ' ' + (isMobileMenuOpen && 'freeze')}>
 			<Header {...propsForMangeMobielMenu}/>
 			<div>
 				<NavPanel nameBackButton='info' propsForMangeMobielMenu={propsForMangeMobielMenu}/>

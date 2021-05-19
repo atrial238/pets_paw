@@ -48,7 +48,7 @@ const MyDogsBody = ({handleUploadOrDeleteImages, state, changeLimit, setNextPage
 	}
 
 	return (
-		<div className={wrapper}>
+		<div className={wrapper + ' ' + (state.isUploadModalOpen && 'freeze')}>
 
 			{/* Header */}
 			<div className={header_my_dogs}>
