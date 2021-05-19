@@ -4,8 +4,6 @@ import {Breeds, Favourites, Gallery, Home, Voting, LikesAndDislikes, Info, MyDog
 
 function App() {
 
-	
-
   return (
 	<div className='app'>
 		<Route exact path={['/', '/home']} component={Home}/>
@@ -16,7 +14,6 @@ function App() {
 		<Route exact path='/favourites' component={Favourites}/>
 		<Route exact path='/likes-and-dislikes' component={LikesAndDislikes}/>
 		<Route exact path='/my-dogs' component={MyDogs}/>
-
 	</div>
   );
 }

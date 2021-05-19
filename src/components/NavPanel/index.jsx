@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link, useRouteMatch} from 'react-router-dom';
 
 
@@ -12,9 +12,7 @@ const NavPanel = ({nameBackButton, propsForMangeMobielMenu}) => {
 	const [isActiveFav, setIsActiveFav] = useState(''),
 			[isActiveLikes, setIsActiveLikes] = useState(''),
 			[isActiveMyDog, setIsActiveMyDog] = useState('');
-			
-			
-
+	
 	const path = useRouteMatch().path;
 
 	useEffect(() => {
@@ -31,10 +29,9 @@ const NavPanel = ({nameBackButton, propsForMangeMobielMenu}) => {
 			default:
 		}
 	}, [path])
-	
 
 	return (
-		<div className={wrapper}>
+		<div className={wrapper} id='nav_panel'>
 			<div className={back_button}><BackButton name={nameBackButton} /></div>
 			<div className={links_wrapper}>
 				<Link to='/likes-and-dislikes' className={button + ' ' + isActiveLikes + ' ' + likes_dislikes}><Likes/><Dislikes/></Link>

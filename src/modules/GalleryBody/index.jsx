@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 
 import { GridItems, ImagePet, Paginator, Placeholder } from "../../components"
@@ -7,6 +7,8 @@ import HeaderGallery from "./HeaderGallery/HeaderGallery";
 
 const GalleryBody = ({setNextPage, setPreviousPage, handleTypeBreedForSearch, updateSearch, 
 	changeLimit, state, handleCurrentBreedForGallery, handleOrderBreedForSearch}) => {
+	
+	
 	
 	//helper function to avoid duplicate code when creating petsImage
 	const getImagePet = (imagePet, id, nameBreed, imageId, value, isGalleryPage) => {

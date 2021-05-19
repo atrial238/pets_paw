@@ -4,7 +4,7 @@ import { BodyContainter, NavPanel } from "../../components";
 import { useBusinessLayerGallery } from "../../hooks/useBusinessLayerGallery";
 import useMobileMenu from '../../hooks/useMobileMenuOpen';
 import { GalleryBody, Header } from "../../modules";
-import {wrapper} from './Gallery.module.scss';
+import {wrapper, freeze} from './Gallery.module.scss';
 
 const Gallery = () => {
 
@@ -14,10 +14,11 @@ const Gallery = () => {
 	//return isMobileMenuOpen and setMobileMenuOpen
 	const propsForMangeMobielMenu = useMobileMenu();
 
+	const {isMobileMenuOpen} = propsForMangeMobielMenu;
 	return (
 		<div className='wrapper_page'>
 			<Header {...propsForMangeMobielMenu}/>
-			<div className={wrapper}>
+			<div className={wrapper + ' ' + (isMobileMenuOpen && freeze)}>
 				<NavPanel nameBackButton='gallery' propsForMangeMobielMenu={propsForMangeMobielMenu}/>
 				<BodyContainter>
 					<GalleryBody {...propsBreedsBody} />
