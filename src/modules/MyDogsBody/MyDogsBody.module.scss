@@ -21,6 +21,9 @@
 		}
 		.upload_button{
 			height: 100%;
+			button {
+				padding: 7px 30px;
+			}
 			@media(max-width: 500px){
 				width: 100%;
 				display: flex;
